@@ -1,0 +1,16 @@
+{
+  "name": "dr_rp_bot",
+  "version": "1.0.0",
+  "description": "Bot for Danganronpa Role-Playing",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^11.2.1",
+    "enmap": "^0.4.2",
+    "enmap-level": "^1.0.0"
+  }
+}
