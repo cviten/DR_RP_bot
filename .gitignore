@@ -1,0 +1,13 @@
+# Dev tools
+node_modules/
+npm-debug.log
+
+# My ids
+config.json
+
+# Items
+data/
+
+# Things
+images/
+music/

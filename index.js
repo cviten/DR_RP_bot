@@ -21,7 +21,8 @@ const newSettings = {
   news: 0,
   announcement: 0,
   trial: 0,
-  casino: 0
+  casino: 0,
+  players: null
 };
 
 client.on("guildCreate", guild => {
@@ -83,10 +84,12 @@ client.say = (message, channel, text) => {
   message.guild.channels.get(channel).send(text);
 }
 
+messages_log = "383233337801834497";
+
 client.on('message', message => {
   if (!message.guild && !message.author.bot) {
     const text = message.content;
-    client.channels.get(client.config.log_channel).send(`Received a DM from **${message.author.username}**:\n\`\`\`${text}\`\`\``);
+    client.channels.get(messages_log).send(`Received a DM from **${message.author.username}**:\n\`\`\`${text}\`\`\``);
   }
   if (message.guild || !message.author.bot) {
     //Points and Coins
