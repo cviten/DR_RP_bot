@@ -9,9 +9,11 @@ const guildConfigs = new Enmap({provider: new EnmapLevel({name: "guildConfigs"})
 
 
 
-const itemsV3 = require('./DRV3_items.json');
-//Casino itens that should be removed:
+const itemsV3 = require('./itemsV3.json');
+const shopV3 = require('./shopV3.json');
+//Casino items that should be removed:
 //18,19,21,22,24,31,33,34,35,37,43,44,45,46,48,50,56,67,68,69,71,77,87,89,90,91,92,93,106
+const nonMonoV3 = [18,19,21,22,24,31,33,34,35,37,43,44,45,46,48,50,56,67,68,69,71,77,87,89,90,91,92,93,106];
 
 
 client.on('ready', () => {
@@ -32,9 +34,10 @@ const newSettings = {
   players: null
 };
 
-cmd_test = "374298011041398785";
+//cmd_test = "374298011041398785";
+const monoPrice = 100;
 
-messages_log = "383233337801834497";
+const messages_log = "383233337801834497";
 rps_table = [
     [0,-1,1],
     [1,0,-1],
@@ -348,9 +351,9 @@ client.on('message', message => {
     }
     if (message.content.startsWith(client.config.prefix + "coins")) {
       if (guildConf.players.hasOwnProperty(message.author.id)) {
-        message.reply(`You have ${guildConf.players[message.author.id].coins} Monocoins`);
+        message.channel.send(`You have ${guildConf.players[message.author.id].coins} Monocoins`);
       } else {
-        message.reply("Don't have you as a player...");
+        message.channel.send("Don't have you as a player...");
       }
     }
     if (message.channel.id == guildConf.casino || message.channel.id==cmd_test ) {
@@ -360,14 +363,14 @@ client.on('message', message => {
         const bet = args[0]; const sign = args[1];
         const player = guildConf.players[message.author.id];
         if (!player) {
-          message.reply("Don't have this player");
+          message.channel.send("Don't have this player");
         }
         if ((isNaN(bet)) || (bet < 0)) {
-          message.reply("Wrong bet");
+          message.channel.send("Wrong bet");
           return;
         };
         if (bet > player.coins) {
-          message.reply("You don't have that many coins");
+          message.channel.send("You don't have that many coins");
           return;
         }
         let pl;
@@ -398,13 +401,13 @@ client.on('message', message => {
         const res = rps_table[pl][comp];
         switch (res) {
           case 1:
-            message.reply("You won!");
+            message.channel.send("You won!");
             break;
           case 0:
-            message.reply("Tie");
+            message.channel.send("Tie");
             break;
           case -1:
-            message.reply("You lose!");
+            message.channel.send("You lose!");
             break;
         }
         player.coins = player.coins + res * bet;
@@ -414,23 +417,63 @@ client.on('message', message => {
     };
     if (message.content.startsWith(client.config.prefix + "items")) {
       if (guildConf.players.hasOwnProperty(message.author.id)) {
-        console.log(guildConf.players[message.author.id].items);
-        console.log(Object.getOwnPropertyNames(guildConf.players[message.author.id].items).length === 0);
         if (!(Object.getOwnPropertyNames(guildConf.players[message.author.id].items).length === 0)) {
           let s = "";
-          //let names = Object.keys(guildConf.players[message.author.id].items);
           for (var item in guildConf.players[message.author.id].items ) {
-            console.log(item);
-            //onsole.log(itemsV3[item]);
-            //console.log(Object.keys(myObject));
-            s = s + `${itemsV3[item].name} x ${guildConf.players[message.author.id].items[item]}\n`
+            s = s + `id: ${item} | ${itemsV3[item].name} x ${guildConf.players[message.author.id].items[item]}\n`
           }
-          message.reply("Your items: ```" + s + "```");
+          message.channel.send("Your items: ```" + s + "```");
         } else {
-          message.reply("You don't have anything... :(")
+          message.channel.send("You don't have anything... :(")
         }
       } else {
-        message.reply("Don't have you as a player...");
+        message.channel.send("Don't have you as a player...");
+      }
+    }
+    if (message.content.startsWith(client.config.prefix + "mono")) {
+      const args = message.content.slice(client.config.prefix.length).trim().split(/ +/g);
+      const command = args.shift().toLowerCase();
+      const player = guildConf.players[message.author.id];
+      if (monoPrice > player.coins) {
+        message.channel.send("You don't have that many coins");
+        return;
+      } else {
+        let item;
+        do {
+          item = Math.floor(Math.random() * (114 - 1)) + 1;
+        } while (nonMonoV3.indexOf(item) != -1);
+        client.item_get(guildConf, message.author.id, item);
+        message.channel.send(`You win ${itemsV3[item].name}`);
+        player.coins = player.coins - monoPrice;
+        guildConf.players[message.author.id] = player;
+        guildConfigs.set(message.guild.id, guildConf);
+      }
+    };
+    if (message.content.startsWith(client.config.prefix + "shop")) {
+      if (guildConf.players.hasOwnProperty(message.author.id)) {
+        const args = message.content.slice(client.config.prefix.length).trim().split(/ +/g);
+        const command = args.shift().toLowerCase();
+        const item = args.slice(0).join(" ");
+        const player = guildConf.players[message.author.id];
+        switch (item) {
+          case "150":
+          case "Love Key":
+            if (shopV3[150] > player.coins) {
+              message.channel.send("You don't have that many coins");
+              return;
+            } else {
+              client.item_get(guildConf, message.author.id, 150);
+              player.coins = player.coins - shopV3[150];
+              guildConf.players[message.author.id] = player;
+              guildConfigs.set(message.guild.id, guildConf);
+              message.channel.send(`You bought ${itemsV3[item].name}`);
+            }
+            break;
+          default:
+            message.channel.send("Wrong item");
+        }
+      } else {
+        message.channel.send("Don't have you as a player...");
       }
     }
   }

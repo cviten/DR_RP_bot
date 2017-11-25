@@ -148,7 +148,7 @@
     "desc": "A thick journal packed with record of trips. However, it was actually written using vague knowledge and the rich imagination of someone looking at a world map."
   },
   "38":{
-    "name": "Dreams Come True �� Spell Book",
+    "name": "Dreams Come True -- Spell Book",
     "desc": "A book that contains old magic gathered from all over the country and collected into an easy to read volume for kids. Any dangerous have been removed, so only love spells are left."
   },
   "39":{
@@ -450,5 +450,14 @@
   "113":{
     "name": "Dark Belt",
     "desc": "A black-ish belt worn with karate clothes. It can only be worn by those with justice in their hearts."
+  },
+  "150":{
+    "name": "Love Key",
+    "desc": "A key to certain places filled with greed and lust. You can give it away, but something good might happen if you keep it."
+  },
+  "151":{
+    "name": "Golden Love Key",
+    "desc": "Legends say that this key was the bridge that made Lovers reunite again. This key... it has three prongs... could that mean something? However, one of them is -detachable?"
   }
+
 }
