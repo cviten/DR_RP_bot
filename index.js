@@ -7,10 +7,11 @@ const Enmap = require('enmap');
 const EnmapLevel = require('enmap-level');
 const guildConfigs = new Enmap({provider: new EnmapLevel({name: "guildConfigs"})});
 
-//Casino itens that should be removed:
-//18,19,21,22,24,31,33,34,35,37,43,44,45,46,48,50,56,67,68,69,71,77,87,89,90,91,92,93,106
+
 
 const itemsV3 = require('./DRV3_items.json');
+//Casino itens that should be removed:
+//18,19,21,22,24,31,33,34,35,37,43,44,45,46,48,50,56,67,68,69,71,77,87,89,90,91,92,93,106
 
 
 client.on('ready', () => {
@@ -49,9 +50,32 @@ client.on("guildCreate", guild => {
 //  mod_role = guild.roles.find("name", "test_role");
 client.on("guildDelete", guild => {
   // Removing an element uses `delete(key)`
-  guildConfigs.delete(guild.id);
+  //guildConfigs.delete(guild.id);
   console.log("Left guild");
 });
+
+client.item_get = (guildConf, playerID, itemID) => {
+  const player = guildConf.players[playerID];
+  if (!player.items.hasOwnProperty(itemID)) {
+    player.items[itemID] = 1;  // number of items
+  } else {
+    player.items[itemID]++;
+  }
+};
+
+client.item_take = (guildConf, playerID, itemID) => {
+  const player = guildConf.players[playerID];
+  if (!player.items.hasOwnProperty(itemID)) {
+    //player.items[itemID] = 1;  // number of items
+    return -1;
+  } else {
+    player.items[itemID]--;
+    if (player.items[itemID] == 0) {
+      delete player.items[itemID];
+    }
+    return 0;
+  }
+}
 
 client.shout = (message, type, name, text) => {
   const author = message.member.nickname || message.author.username;
@@ -112,6 +136,9 @@ client.on('message', message => {
   // Loading confing
   const guildConf = guildConfigs.get(message.guild.id);
 
+  //----------------------------------------------------------------------------
+
+  // Debug stuff
   if (message.author.id == client.config.ownerid) {
     if (message.content.startsWith(client.config.prefix + "add")) {
       const args = message.content.slice(client.config.prefix.length).trim().split(/ +/g);
@@ -147,6 +174,7 @@ client.on('message', message => {
     }
   }
 
+  // Managing global stuff
   if (message.author.id == client.config.ownerid || message.member.hasPermission("ADMINISTRATOR")) {
     if (message.content.startsWith(client.config.prefix + "set")) {
       const args = message.content.slice(client.config.prefix.length).trim().split(/ +/g);
@@ -198,6 +226,7 @@ client.on('message', message => {
 
   const cmd_test="374298011041398785";
 
+  // Managing not so global stuff global stuff
   if (message.author.id == client.config.ownerid || message.member.roles.has(guildConf.modRole) || message.channel.id==cmd_test) {
     if (message.content.startsWith(client.config.prefix + "say") ||
         message.content.startsWith(client.config.prefix + "announce") ||
@@ -267,22 +296,40 @@ client.on('message', message => {
     if (message.content.startsWith(client.config.prefix + "give")) {
       const args = message.content.slice(client.config.prefix.length).trim().split(/ +/g);
       const person = message.mentions.members.first();
-      if ((isNaN(args[2]))) {
+      const num = args[3];
+      if ((isNaN(num))) {
         message.reply("Wrong number");
         return;
       }
       if (person) {
-        guildConf.players[person.id].coins = parseInt(guildConf.players[person.id].coins) + parseInt(args[2]);
-        guildConfigs.set(message.guild.id, guildConf);
-        const name = message.mentions.members.first().nickname || message.mentions.members.first().user.username;
-        message.channel.send(`**${name}** were given ${args[2]} coins`);
-        //message.channels.get(guildConf.log).send(`**${message.author.username}** sent a Direct message to **${name}**:\n\`\`\`${text}\`\`\``);
+        switch (args[2]) {
+          case "coins":
+            guildConf.players[person.id].coins = parseInt(guildConf.players[person.id].coins) + parseInt(num);
+            guildConfigs.set(message.guild.id, guildConf);
+            const name = message.mentions.members.first().nickname || message.mentions.members.first().user.username;
+            message.channel.send(`**${name}** were given ${num} coins`);
+            //message.channels.get(guildConf.log).send(`**${message.author.username}** sent a Direct message to **${name}**:\n\`\`\`${text}\`\`\``);
+            break;
+          case "item":
+            if (num > 0 && num < 114) {
+              const name = message.mentions.members.first().nickname || message.mentions.members.first().user.username;
+              client.item_get(guildConf, person.id, num);
+              message.reply(`Item was given to ${name}`)
+              guildConfigs.set(message.guild.id, guildConf);
+            } else {
+              message.reply("Don't have this item");
+              return;
+            }
+            break;
+          default:
+        }
       } else {
         message.channel.send("Do we have 17th student, who I don't know about?");
       }
     }
   }
-  // Shouting "That's wrong" and "I agree with this"
+
+  //Student's stuff
   if (message.author.id == client.config.ownerid || message.member.roles.has(guildConf.studentRole)) {
     if (message.content.startsWith(client.config.prefix + "init")) {
       if (!(guildConf.hasOwnProperty("players"))) {
@@ -301,7 +348,9 @@ client.on('message', message => {
     }
     if (message.content.startsWith(client.config.prefix + "coins")) {
       if (guildConf.players.hasOwnProperty(message.author.id)) {
-        message.reply(`You have ${guildConf.players[message.author.id].coins} Monocoins`)
+        message.reply(`You have ${guildConf.players[message.author.id].coins} Monocoins`);
+      } else {
+        message.reply("Don't have you as a player...");
       }
     }
     if (message.channel.id == guildConf.casino || message.channel.id==cmd_test ) {
@@ -362,9 +411,31 @@ client.on('message', message => {
         guildConf.players[message.author.id] = player;
         guildConfigs.set(message.guild.id, guildConf);
       }
+    };
+    if (message.content.startsWith(client.config.prefix + "items")) {
+      if (guildConf.players.hasOwnProperty(message.author.id)) {
+        console.log(guildConf.players[message.author.id].items);
+        console.log(Object.getOwnPropertyNames(guildConf.players[message.author.id].items).length === 0);
+        if (!(Object.getOwnPropertyNames(guildConf.players[message.author.id].items).length === 0)) {
+          let s = "";
+          //let names = Object.keys(guildConf.players[message.author.id].items);
+          for (var item in guildConf.players[message.author.id].items ) {
+            console.log(item);
+            //onsole.log(itemsV3[item]);
+            //console.log(Object.keys(myObject));
+            s = s + `${itemsV3[item].name} x ${guildConf.players[message.author.id].items[item]}\n`
+          }
+          message.reply("Your items: ```" + s + "```");
+        } else {
+          message.reply("You don't have anything... :(")
+        }
+      } else {
+        message.reply("Don't have you as a player...");
+      }
     }
   }
-  // Shouting "That's wrong" and "I agree with this"
+
+  //Everyone's stuff
   if (message.content.startsWith(client.config.prefix + "obj") || message.content.startsWith(client.config.prefix.toUpperCase() + "obj") || message.content.startsWith(client.config.prefix + "agree") || message.content.startsWith(client.config.prefix.toUpperCase() + "agree")) {
     const args = message.content.slice(client.config.prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
