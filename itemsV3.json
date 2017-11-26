@@ -457,7 +457,18 @@
   },
   "151":{
     "name": "Golden Love Key",
-    "desc": "Legends say that this key was the bridge that made Lovers reunite again. This key... it has three prongs... could that mean something? However, one of them is -detachable?"
+    "desc": "Legends say that this key was the bridge that made Lovers reunite again. This key... it has three prongs... could that mean something?"
+  },
+  "152":{
+    "name": "Sex Bender Stone",
+    "desc": "This stone can help you change sex for a day. A lot easier then buckets of cold and hot water."
+  },
+  "153":{
+    "name": "Animalea Stone",
+    "desc": "Summon your inner beast by using this stone in form of animal ears, tail or whatever your inner animal is. Effect is temporary."
+  },
+  "154":{
+    "name": "Turn 180 Stone",
+    "desc": "Don't like somebody's personality? Now you can change it. This stone will turn their personality 180 degrees around. Though, they probably beat you up when they return to normal."
   }
-
 }
