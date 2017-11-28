@@ -14,6 +14,7 @@ const shopV3 = require('./shopV3.json');
 //Casino items that should be removed:
 //18,19,21,22,24,31,33,34,35,37,43,44,45,46,48,50,56,67,68,69,71,77,87,89,90,91,92,93,106
 const nonMonoV3 = [18,19,21,22,24,31,33,34,35,37,43,44,45,46,48,50,56,67,68,69,71,77,87,89,90,91,92,93,106];
+const reusableV3 = [18];
 
 
 client.on('ready', () => {
@@ -48,31 +49,16 @@ const daily = 200;
 
 var DaytimeRule = new schedule.RecurrenceRule();
 DaytimeRule.hour = 15;
+DaytimeRule.minute = 0;
+DaytimeRule.second = 0;
+
 
 var NightTimeRule = new schedule.RecurrenceRule();
 NightTimeRule.hour = 7;
+DaytimeRule.minute = 0;
+DaytimeRule.second = 0;
 
-var j1 = schedule.scheduleJob(DaytimeRule, function(){
-  const guildConf = guildConfigs.get(guildV3);
-  //console.log('This message will show every day in 15:00');
-  //guildConf.players[person.id].coins = parseInt(guildConf.players[person.id].coins) + parseInt(num);
-  //for (let item in guildConf.players[message.author.id].items ) {
-  //  s = s + `id: ${item} | ${itemsV3[item].name} x ${guildConf.players[message.author.id].items[item]}\n`
-  guildV3.channels.get(guildConf.announcement).send("@here Morning! Daytime is here.")
-  for (let person in guildConf.players) {
-    guildConf.players[person].coins = guildConf.players[person].coins + daily;
-  };
-  guildConfigs.set(guildV3, guildConf);
-});
 
-var j2 = schedule.scheduleJob(NightTimeRule, function(){
-  const guildConf = guildConfigs.get(guildV3);
-  //console.log('This message will show every day in 15:00');
-  //guildConf.players[person.id].coins = parseInt(guildConf.players[person.id].coins) + parseInt(num);
-  //for (let item in guildConf.players[message.author.id].items ) {
-  //  s = s + `id: ${item} | ${itemsV3[item].name} x ${guildConf.players[message.author.id].items[item]}\n`
-  guildV3.channels.get(guildConf.announcement).send("@here Time to go to bed, Night time.")
-});
 
 client.on("guildCreate", guild => {
   // Adding a new row to the collection uses `set(key, value)`
@@ -173,7 +159,7 @@ client.on('message', message => {
 
   // Debug stuff
   if (message.author.id == client.config.ownerid) {
-    if (message.content.startsWith(client.config.prefix + "add")) {
+    if (message.content.startsWith(client.config.prefix + "add ")) {
       const args = message.content.slice(client.config.prefix.length).trim().split(/ +/g);
       const command = args.shift().toLowerCase();
       switch (args[0]) {
@@ -189,7 +175,7 @@ client.on('message', message => {
           message.reply("Something wrong");
       }
     };
-    if (message.content.startsWith(client.config.prefix + "delete")) {
+    if (message.content.startsWith(client.config.prefix + "delete ")) {
       const args = message.content.slice(client.config.prefix.length).trim().split(/ +/g);
       const command = args.shift().toLowerCase();
       switch (args[0]) {
@@ -205,11 +191,32 @@ client.on('message', message => {
           message.reply("Something wrong");
       }
     }
+    if (message.content.startsWith(client.config.prefix + "cut")) {
+      for (let person in guildConf.players) {
+        let s = guildConf.players[person].coins + "10";
+        s = s.slice(0, -4);
+        guildConf.players[person].coins = s;
+        //str = str.slice(0, -1)
+        guildConfigs.set(message.guild.id, guildConf);
+      };
+    } else
+    if (message.content.startsWith(client.config.prefix + "cad")) {
+      for (let person in guildConf.players) {
+        let s = guildConf.players[person].coins + "00";
+        //s = s.slice(0, -4);
+        guildConf.players[person].coins = s;
+        //str = str.slice(0, -1)
+        guildConfigs.set(message.guild.id, guildConf);
+      };
+    }
+    if (message.content.startsWith(client.config.prefix + "cad")) {
+
+    }
   }
 
   // Managing global stuff
   if (message.author.id == client.config.ownerid || message.member.hasPermission("ADMINISTRATOR")) {
-    if (message.content.startsWith(client.config.prefix + "set")) {
+    if (message.content.startsWith(client.config.prefix + "set ")) {
       const args = message.content.slice(client.config.prefix.length).trim().split(/ +/g);
       const command = args.shift().toLowerCase();
       if (!args[0]) {
@@ -259,9 +266,9 @@ client.on('message', message => {
 
   const cmd_test="374298011041398785";
 
-  // Managing not so global stuff global stuff
+  // Managing not so global stuff
   if (message.author.id == client.config.ownerid || message.member.roles.has(guildConf.modRole) || message.channel.id==cmd_test) {
-    if (message.content.startsWith(client.config.prefix + "say") ||
+    if (message.content.startsWith(client.config.prefix + "say ") ||
         message.content.startsWith(client.config.prefix + "announce") ||
         message.content.startsWith(client.config.prefix + "gym") ||
         message.content.startsWith(client.config.prefix + "news") ||
@@ -298,7 +305,7 @@ client.on('message', message => {
         message.guild.channels.get(guildConf.log).send(`**${message.author.username}** sent a message in **${message.guild.channels.get(channel).name}**:\n\`\`\`${text}\`\`\``);
       }
     } else
-    if (message.content.startsWith(client.config.prefix + "dm")) {
+    if (message.content.startsWith(client.config.prefix + "dm ")) {
       const args = message.content.slice(client.config.prefix.length).trim().split(/ +/g);
       const person = message.mentions.members.first();
       const name = message.mentions.members.first().nickname || message.mentions.members.first().user.username;
@@ -314,7 +321,7 @@ client.on('message', message => {
         message.channel.send("Do we have 17th student, who I don't know about?");
       }
     }
-    if (message.content.startsWith(client.config.prefix + "reset")) {
+    if (message.content.startsWith(client.config.prefix + "reset ")) {
       const person = message.mentions.members.first();
       if (person) {
         guildConf.players[person.id].coins = 200;
@@ -328,9 +335,10 @@ client.on('message', message => {
         message.channel.send("Do we have 17th student, who I don't know about?");
       }
     };
-    if (message.content.startsWith(client.config.prefix + "give")) {
+    if (message.content.startsWith(client.config.prefix + "give ")) {
       const args = message.content.slice(client.config.prefix.length).trim().split(/ +/g);
       const person = message.mentions.members.first();
+      const role = message.mentions.roles.first();
       const num = args[3];
       if ((isNaN(num))) {
         message.reply("Wrong number");
@@ -346,7 +354,7 @@ client.on('message', message => {
             //message.channels.get(guildConf.log).send(`**${message.author.username}** sent a Direct message to **${name}**:\n\`\`\`${text}\`\`\``);
             break;
           case "item":
-            if ((num == -1) || (num > 0 && num < 114) || (num > 149 && num < 155)) {
+            if ((num == -1) || (num > 0 && num < 114) || (num > 149 && num < 155) || (num == 160)) {
               const name = message.mentions.members.first().nickname || message.mentions.members.first().user.username;
               client.item_get(guildConf, person.id, num);
               message.reply(`Item was given to ${name}`)
@@ -361,6 +369,19 @@ client.on('message', message => {
       } else {
         message.channel.send("Do we have 17th student, who I don't know about?");
       }
+    }
+    if (message.content.startsWith(client.config.prefix + "giveall ")) {
+      const args = message.content.slice(client.config.prefix.length).trim().split(/ +/g);
+      const num = args[1];
+      if ((isNaN(num))) {
+        message.reply("Wrong number");
+        return;
+      };
+      for (let person in guildConf.players) {
+        guildConf.players[person].coins = parseInt(guildConf.players[person].coins) + parseInt(num);
+      };
+      message.channel.send(`All students were given ${num} coins`);
+      guildConfigs.set(message.guild.id, guildConf);
     }
   }
 
@@ -389,7 +410,7 @@ client.on('message', message => {
       }
     }
     if (message.channel.id == guildConf.casino || message.channel.id==cmd_test ) {
-      if (message.content.startsWith(client.config.prefix + "rps")) {
+      if (message.content.startsWith(client.config.prefix + "rps ")) {
         const args = message.content.slice(client.config.prefix.length).trim().split(/ +/g);
         const command = args.shift().toLowerCase();
         const bet = args[0]; const sign = args[1];
@@ -446,7 +467,7 @@ client.on('message', message => {
         guildConf.players[message.author.id] = player;
         guildConfigs.set(message.guild.id, guildConf);
       }
-      if (message.content.startsWith(client.config.prefix + "shop")) {
+      if (message.content.startsWith(client.config.prefix + "shop ")) {
         if (guildConf.players.hasOwnProperty(message.author.id)) {
           const args = message.content.slice(client.config.prefix.length).trim().split(/ +/g);
           const command = args.shift().toLowerCase();
@@ -466,9 +487,9 @@ client.on('message', message => {
                 message.channel.send(`You bought ${itemsV3[item].name}`);
               }
               break;
-              case "152":
-              case "Sex Bender Stone":
-                if (shopV3[152] > player.coins) {
+            case "152":
+            case "Sex Bender Stone":
+              if (shopV3[152] > player.coins) {
                   message.channel.send("You don't have that many coins");
                   return;
                 } else {
@@ -478,33 +499,33 @@ client.on('message', message => {
                   guildConfigs.set(message.guild.id, guildConf);
                   message.channel.send(`You bought ${itemsV3[item].name}`);
                 }
-                break;
-                case "153":
-                case "Animalea Stone":
-                  if (shopV3[153] > player.coins) {
-                    message.channel.send("You don't have that many coins");
-                    return;
-                  } else {
-                    client.item_get(guildConf, message.author.id, 153);
-                    player.coins = player.coins - shopV3[153];
-                    guildConf.players[message.author.id] = player;
-                    guildConfigs.set(message.guild.id, guildConf);
-                    message.channel.send(`You bought ${itemsV3[item].name}`);
-                  }
-                  break;
-                    case "154":
-                    case "Turn 180 Stone":
-                      if (shopV3[154] > player.coins) {
-                        message.channel.send("You don't have that many coins");
-                        return;
-                      } else {
-                        client.item_get(guildConf, message.author.id, 154);
-                        player.coins = player.coins - shopV3[154];
-                        guildConf.players[message.author.id] = player;
-                        guildConfigs.set(message.guild.id, guildConf);
-                        message.channel.send(`You bought ${itemsV3[item].name}`);
-                      }
-                      break;
+              break;
+            case "153":
+            case "Animalea Stone":
+              if (shopV3[153] > player.coins) {
+                message.channel.send("You don't have that many coins");
+                return;
+              } else {
+                client.item_get(guildConf, message.author.id, 153);
+                player.coins = player.coins - shopV3[153];
+                guildConf.players[message.author.id] = player;
+                guildConfigs.set(message.guild.id, guildConf);
+                message.channel.send(`You bought ${itemsV3[item].name}`);
+              }
+              break;
+            case "154":
+            case "Turn 180 Stone":
+              if (shopV3[154] > player.coins) {
+                message.channel.send("You don't have that many coins");
+                return;
+              } else {
+                client.item_get(guildConf, message.author.id, 154);
+                player.coins = player.coins - shopV3[154];
+                guildConf.players[message.author.id] = player;
+                guildConfigs.set(message.guild.id, guildConf);
+                message.channel.send(`You bought ${itemsV3[item].name}`);
+              }
+              break;
             default:
               message.channel.send("Wrong item");
           }
@@ -541,13 +562,13 @@ client.on('message', message => {
           item = Math.floor(Math.random() * (114 - 1)) + 1;
         } while (nonMonoV3.indexOf(item) != -1);
         client.item_get(guildConf, message.author.id, item);
-        message.channel.send(`You win ${itemsV3[item].name}`);
+        message.channel.send(`You win ${itemsV3[item].name}\n${itemsV3[item].desc}`);
         player.coins = player.coins - monoPrice;
         guildConf.players[message.author.id] = player;
         guildConfigs.set(message.guild.id, guildConf);
       }
     }
-    if (message.content.startsWith(client.config.prefix + "use")) {
+    if (message.content.startsWith(client.config.prefix + "use ")) {
       if (guildConf.players.hasOwnProperty(message.author.id)) {
         const args = message.content.slice(client.config.prefix.length).trim().split(/ +/g);
         const command = args.shift().toLowerCase();
@@ -557,6 +578,9 @@ client.on('message', message => {
         if ((item > 0 && item < 114)) {
             if (client.item_take(guildConf,message.author.id, item) == 0) {
               message.channel.send(`**${name}** used ${itemsV3[item].name}`);
+              if (item > 17) {
+                client.item_get(guildConf,message.author.id, item);
+              }
             } else {
               message.channel.send(`You don't have this item.`);
             };
@@ -574,7 +598,7 @@ client.on('message', message => {
         message.channel.send("Don't have you as a player...");
       }
     }
-    if (message.content.startsWith(client.config.prefix + "trade")) {
+    if (message.content.startsWith(client.config.prefix + "trade ")) {
       if (guildConf.players.hasOwnProperty(message.author.id)) {
         const args = message.content.slice(client.config.prefix.length).trim().split(/ +/g);
         const person = message.mentions.members.first();
@@ -620,7 +644,7 @@ client.on('message', message => {
     if (message.content.startsWith(client.config.prefix + "desc")) {
       const args = message.content.slice(client.config.prefix.length).trim().split(/ +/g);
       //console.log(args[1]);
-      if ((!(isNaN(args[1])) && ((args[1] > 0 && args[1] < 114) || (args[1] > 149 && args[1] < 155))) || args[1] == "-1")  {
+      if ((!(isNaN(args[1])) && ((args[1] > 0 && args[1] < 114) ||(args[1] == 160) || (args[1] > 149 && args[1] < 155))) || args[1] == "-1")  {
         message.channel.send(`**${itemsV3[args[1]].name}**\n${itemsV3[args[1]].desc}`);
       } else {
         message.channel.send("Wrong number")
@@ -629,10 +653,10 @@ client.on('message', message => {
   }
 
   //Everyone's stuff
-  if (message.content.startsWith(client.config.prefix + "obj") ||
-      message.content.startsWith(client.config.prefix.toUpperCase() + "obj") ||
-      message.content.startsWith(client.config.prefix + "agree") ||
-      message.content.startsWith(client.config.prefix.toUpperCase() + "agree")) {
+  if (message.content.startsWith(client.config.prefix + "obj ") ||
+      message.content.startsWith(client.config.prefix.toUpperCase() + "obj ") ||
+      message.content.startsWith(client.config.prefix + "agree ") ||
+      message.content.startsWith(client.config.prefix.toUpperCase() + "agree ")) {
     const args = message.content.slice(client.config.prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
     const person = message.mentions.members.first();
@@ -652,6 +676,11 @@ client.on('message', message => {
     //const args = message.content.slice(client.config.prefix.length).trim().split(/ +/g);
     //message.delete();
     client.channels.get(master_room).send(`<@!304718419427721217> Check **${message.channel.name}**`);
+  }
+  else
+  if (message.content.startsWith(client.config.prefix + "dice")) {
+    n = Math.floor(Math.random() * (21 - 1)) + 1;
+    message.channel.send(`You rolled ${n}`);
   }
 
 
