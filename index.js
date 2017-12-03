@@ -55,8 +55,8 @@ DaytimeRule.second = 0;
 
 var NightTimeRule = new schedule.RecurrenceRule();
 NightTimeRule.hour = 7;
-DaytimeRule.minute = 0;
-DaytimeRule.second = 0;
+NightTimeRule.minute = 0;
+NightTimeRule.second = 0;
 
 
 
@@ -370,7 +370,7 @@ client.on('message', message => {
         message.channel.send("Do we have 17th student, who I don't know about?");
       }
     }
-    if (message.content.startsWith(client.config.prefix + "giveall ")) {
+    if (message.content.startsWith(client.config.prefix + "giveall")) {
       const args = message.content.slice(client.config.prefix.length).trim().split(/ +/g);
       const num = args[1];
       if ((isNaN(num))) {
@@ -463,7 +463,11 @@ client.on('message', message => {
             message.channel.send("You lose!");
             break;
         }
-        player.coins = player.coins + res * bet;
+        let mult = 1;
+        if ((player.items.hasOwnProperty("96")) && (res == 1)) {
+          mult = mult * 1.2;
+        }
+        player.coins = player.coins + res * bet * mult;
         guildConf.players[message.author.id] = player;
         guildConfigs.set(message.guild.id, guildConf);
       }
