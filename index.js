@@ -35,6 +35,8 @@ const newSettings = {
   players: null
 };
 
+let opened = 1;
+
 //cmd_test = "374298011041398785";
 const monoPrice = 100;
 const guildV3 = "374276267379261440"
@@ -209,8 +211,19 @@ client.on('message', message => {
         guildConfigs.set(message.guild.id, guildConf);
       };
     }
-    if (message.content.startsWith(client.config.prefix + "cad")) {
-
+    if (message.content.startsWith(client.config.prefix + "nuke")) {
+      message.channel.send("Okay, we are nuking this channel");
+      setTimeout(() => {message.channel.send("10")}, 1000);
+      setTimeout(() => {message.channel.send("9")}, 2000);
+      setTimeout(() => {message.channel.send("8")}, 3000);
+      setTimeout(() => {message.channel.send("7")}, 4000);
+      setTimeout(() => {message.channel.send("6")}, 5000);
+      setTimeout(() => {message.channel.send("5")}, 6000);
+      setTimeout(() => {message.channel.send("4")}, 7000);
+      setTimeout(() => {message.channel.send("3")}, 8000);
+      setTimeout(() => {message.channel.send("2")}, 9000);
+      setTimeout(() => {message.channel.send("1")}, 10000);
+      setTimeout(() => {message.channel.send("Not really.\nThough, I can really nuke this channel next time...")}, 12000);
     }
   }
 
@@ -225,7 +238,7 @@ client.on('message', message => {
       }
       switch (args[0]) {
         case "news":
-          guildConf.news = message.channel.id;
+          guildConf.news	 = message.channel.id;
           break;
         case "announcement":
           guildConf.announcement = message.channel.id;
@@ -467,7 +480,7 @@ client.on('message', message => {
         if ((player.items.hasOwnProperty("96")) && (res == 1)) {
           mult = mult * 1.2;
         }
-        player.coins = player.coins + res * bet * mult;
+        player.coins = Math.floor(player.coins + res * bet * mult);
         guildConf.players[message.author.id] = player;
         guildConfigs.set(message.guild.id, guildConf);
       }
@@ -579,7 +592,7 @@ client.on('message', message => {
         const name = message.member.nickname || message.author.username;
         const item = args.slice(0).join(" ");
         //const player = guildConf.players[message.author.id];
-        if ((item > 0 && item < 114)) {
+        if ((item > 0 && item < 114) || (item > 159 && item < 162)) {
             if (client.item_take(guildConf,message.author.id, item) == 0) {
               message.channel.send(`**${name}** used ${itemsV3[item].name}`);
               if (item > 17) {
@@ -589,9 +602,9 @@ client.on('message', message => {
               message.channel.send(`You don't have this item.`);
             };
         } else
-        if (item > 149 && item < 155) {
+        if (item > 149 && item < 156) {
           if (client.item_take(guildConf,message.author.id, item) == 0) {
-            message.channel.send(`**${name}** used ${itemsV3[item].name}`);
+            message.channel.send(`<@&374293176057593866> **${name}** used ${itemsV3[item].name}`);
           } else {
             message.channel.send(`You don't have this item.`);
           };
@@ -648,10 +661,30 @@ client.on('message', message => {
     if (message.content.startsWith(client.config.prefix + "desc")) {
       const args = message.content.slice(client.config.prefix.length).trim().split(/ +/g);
       //console.log(args[1]);
-      if ((!(isNaN(args[1])) && ((args[1] > 0 && args[1] < 114) ||(args[1] == 160) || (args[1] > 149 && args[1] < 155))) || args[1] == "-1")  {
+      if ((!(isNaN(args[1])) && ((args[1] > 0 && args[1] < 114) ||(args[1] == 160) || (args[1] > 149 && args[1] < 156))) || args[1] == "-1")  {
         message.channel.send(`**${itemsV3[args[1]].name}**\n${itemsV3[args[1]].desc}`);
       } else {
         message.channel.send("Wrong number")
+      }
+    }
+    if (message.content.startsWith(client.config.prefix + "gift:")) {
+      if (message.author.id == "225373604055875584") {
+        if (opened == 0) {
+          client.item_get(guildConf, message.author.id, 66);
+          client.item_get(guildConf, message.author.id, 66);
+          client.item_get(guildConf, message.author.id, 66);
+          client.item_get(guildConf, message.author.id, 66);
+          client.item_get(guildConf, message.author.id, 66);
+          client.item_get(guildConf, message.author.id, 48);
+          guildConf.players[message.author.id].coins = parseInt(guildConf.players[message.author.id].coins) + parseInt(1000);
+          message.channel.send(`You opened a present and got \`\`\`1000 coins\n5 packs of bird food\nIllusion Rod\`\`\``);
+          guildConfigs.set(message.guild.id, guildConf);
+          opened = 1;
+        } else {
+          message.channel.send("Sorry, only one time");
+        }
+      } else {
+        message.channel.send("Wrong person");
       }
     }
   }
@@ -682,7 +715,7 @@ client.on('message', message => {
     client.channels.get(master_room).send(`<@!304718419427721217> Check **${message.channel.name}**`);
   }
   else
-  if (message.content.startsWith(client.config.prefix + "dice")) {
+  if (message.content.startsWith(client.config.prefix + "dice") || message.content.startsWith(client.config.prefix + "roll")) {
     n = Math.floor(Math.random() * (21 - 1)) + 1;
     message.channel.send(`You rolled ${n}`);
   }

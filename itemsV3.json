@@ -381,7 +381,7 @@
   },
   "96":{
     "name": "Super Lucky Button",
-    "desc": "A shiny button that makes its owner feel like their luck will turn around. It may or may not pull in a powerful wave of luck.\nLove: N/A\nLike: N/A"
+    "desc": "A shiny button that makes its owner feel like their luck will turn around. It may or may not pull in a powerful wave of luck. Has special effect in casino...\nLove: N/A\nLike: N/A"
   },
   "97":{
     "name": "Sparkly Sheet",
@@ -471,6 +471,10 @@
     "name": "Turn 180 Stone",
     "desc": "Don't like somebody's personality? Now you can change it. This stone will turn their personality 180 degrees around. Though, they probably beat you up when they return to normal."
   },
+  "155":{
+    "name": "Body Swap Stone",
+    "desc": "Like in every long-running anime we need to do it at least one. Well, at least now you don't need to find a way to change your bodies back..."
+  },
   "160":{
     "name": "EMP Grenade",
     "desc": "Miu's EMP Grenade"
@@ -481,6 +485,6 @@
   },
   "-1":{
     "name": "Strange Object",
-    "desc": "110sf not really ___ code is not im_lement__ 75321 Works fine 1337 Largo! Prepare our weapons! piro...."
+    "desc": "My stufffffff!!!! few things were broken 11110000 xor 0x234"
   }
 }
