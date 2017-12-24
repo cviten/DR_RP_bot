@@ -314,8 +314,10 @@ client.on('message', message => {
         return;
       }
       client.say(message, channel, text)
-      if (guildConf.log) {
+      if (guildConf.log && channel != "389129991318798336") {
         message.guild.channels.get(guildConf.log).send(`**${message.author.username}** sent a message in **${message.guild.channels.get(channel).name}**:\n\`\`\`${text}\`\`\``);
+      } else if (channel == "389129991318798336") {
+        message.guild.channels.get("391716023210082306").send(`**${message.author.username}** sent a message:\n\`\`\`${text}\`\`\``);
       }
     } else
     if (message.content.startsWith(client.config.prefix + "dm ")) {
@@ -367,7 +369,7 @@ client.on('message', message => {
             //message.channels.get(guildConf.log).send(`**${message.author.username}** sent a Direct message to **${name}**:\n\`\`\`${text}\`\`\``);
             break;
           case "item":
-            if ((num == -1) || (num > 0 && num < 114) || (num > 149 && num < 155) || (num == 160)) {
+            if ((num == -1) || (num > 0 && num < 114) || (num > 149 && num < 158) || (num == 160)) {
               const name = message.mentions.members.first().nickname || message.mentions.members.first().user.username;
               client.item_get(guildConf, person.id, num);
               message.reply(`Item was given to ${name}`)
@@ -602,9 +604,37 @@ client.on('message', message => {
               message.channel.send(`You don't have this item.`);
             };
         } else
-        if (item > 149 && item < 156) {
+        if (item > 149 && item < 157) {
           if (client.item_take(guildConf,message.author.id, item) == 0) {
-            message.channel.send(`<@&374293176057593866> **${name}** used ${itemsV3[item].name}`);
+            message.channel.send(`<@&374286822064521217> **${name}** used ${itemsV3[item].name}`);
+          } else {
+            message.channel.send(`You don't have this item.`);
+          };
+        } else {
+            message.channel.send("Wrong item");
+        };
+		guildConfigs.set(message.guild.id, guildConf);
+      } else {
+        message.channel.send("Don't have you as a player...");
+      }
+    }
+    if (message.content.startsWith(client.config.prefix + "break ")) {
+      if (guildConf.players.hasOwnProperty(message.author.id)) {
+        const args = message.content.slice(client.config.prefix.length).trim().split(/ +/g);
+        const command = args.shift().toLowerCase();
+        const name = message.member.nickname || message.author.username;
+        const item = args.slice(0).join(" ");
+        //const player = guildConf.players[message.author.id];
+        if ((item > 0 && item < 114) || (item > 159 && item < 162)) {
+            if (client.item_take(guildConf,message.author.id, item) == 0) {
+              message.channel.send(`*${itemsV3[item].name}* was broken`);
+            } else {
+              message.channel.send(`You don't have this item.`);
+            };
+        } else
+        if (item > 149 && item < 158) {
+          if (client.item_take(guildConf,message.author.id, item) == 0) {
+            message.channel.send(`<@&374286822064521217> *${itemsV3[item].name}* was broken`);
           } else {
             message.channel.send(`You don't have this item.`);
           };
@@ -661,13 +691,21 @@ client.on('message', message => {
     if (message.content.startsWith(client.config.prefix + "desc")) {
       const args = message.content.slice(client.config.prefix.length).trim().split(/ +/g);
       //console.log(args[1]);
-      if ((!(isNaN(args[1])) && ((args[1] > 0 && args[1] < 114) ||(args[1] == 160) || (args[1] > 149 && args[1] < 156))) || args[1] == "-1")  {
+      if ((!(isNaN(args[1])) && ((args[1] > 0 && args[1] < 114) ||(args[1] == 160) || (args[1] > 149 && args[1] < 158))) || args[1] == "-1")  {
         message.channel.send(`**${itemsV3[args[1]].name}**\n${itemsV3[args[1]].desc}`);
       } else {
         message.channel.send("Wrong number")
       }
     }
-    if (message.content.startsWith(client.config.prefix + "gift:")) {
+    if (message.content.startsWith(client.config.prefix + "flashback")) {
+      const author = message.member.nickname || message.author.username;
+      message.delete();
+      message.channel.send(`*Monokuma pops up and uses Flashback Light on* **${author}**`);
+      if (guildConf.log) {
+        message.guild.channels.get(guildConf.log).send(`**${author}** used a Flashback Light in **${message.channel}**`);
+      }
+    }
+    if (message.content.startsWith(client.config.prefix + "gift")) {
       if (message.author.id == "225373604055875584") {
         if (opened == 0) {
           client.item_get(guildConf, message.author.id, 66);
