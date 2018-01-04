@@ -38,7 +38,7 @@ const newSettings = {
 let opened = 1;
 
 //cmd_test = "374298011041398785";
-const monoPrice = 100;
+const monoPrice = 75;
 const guildV3 = "374276267379261440"
 const messages_log = "383233337801834497";
 rps_table = [
@@ -47,7 +47,7 @@ rps_table = [
     [-1,1,0]
 ];
 
-const daily = 200;
+const daily = 300;
 
 var DaytimeRule = new schedule.RecurrenceRule();
 DaytimeRule.hour = 15;
@@ -56,11 +56,25 @@ DaytimeRule.second = 0;
 
 
 var NightTimeRule = new schedule.RecurrenceRule();
-NightTimeRule.hour = 7;
-NightTimeRule.minute = 0;
+NightTimeRule.hour = 6;
+NightTimeRule.minute = 30;
 NightTimeRule.second = 0;
 
+/*
+var j1 = schedule.scheduleJob(DaytimeRule, function(){
+  let guild = client.guilds.get(guildV3);
+  for (let person in guildConf[guildV3]) {
+    if (person.hasOwnProperty(coins)) {
+      person.coins += 300;
+      // guildConf.players[person.id].coins = parseInt(guildConf.players[person.id].coins) + parseInt(num)
+    }
+  }
+});
 
+var j2 = schedule.scheduleJob(NightTimeRule, function(){
+  //console.log('Today is recognized by Rebecca Black!');
+});
+*/
 
 client.on("guildCreate", guild => {
   // Adding a new row to the collection uses `set(key, value)`
@@ -280,7 +294,7 @@ client.on('message', message => {
   const cmd_test="374298011041398785";
 
   // Managing not so global stuff
-  if (message.author.id == client.config.ownerid || message.member.roles.has(guildConf.modRole) || message.channel.id==cmd_test) {
+  if (message.author.id == client.config.ownerid || message.member.roles.has(guildConf.modRole) || message.channel.id==cmd_test || message.member.hasPermission("MANAGE_MESSAGES")) {
     if (message.content.startsWith(client.config.prefix + "say ") ||
         message.content.startsWith(client.config.prefix + "announce") ||
         message.content.startsWith(client.config.prefix + "gym") ||
@@ -558,7 +572,7 @@ client.on('message', message => {
         if (!(Object.getOwnPropertyNames(guildConf.players[message.author.id].items).length === 0)) {
           let s = "";
           for (let item in guildConf.players[message.author.id].items ) {
-            s = s + `id: ${item} | ${itemsV3[item].name} x ${guildConf.players[message.author.id].items[item]}\n`
+            s = s + `${item} | ${itemsV3[item].name} x ${guildConf.players[message.author.id].items[item]}\n`
           }
           message.channel.send("Your items: ```" + s + "```");
         } else {
@@ -641,6 +655,7 @@ client.on('message', message => {
         } else {
             message.channel.send("Wrong item");
         };
+      guildConfigs.set(message.guild.id, guildConf);
       } else {
         message.channel.send("Don't have you as a player...");
       }
