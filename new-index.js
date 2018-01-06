@@ -455,7 +455,7 @@ function checkPermisions(message, cmd, guildConf) {
         }
         return true;
       } else {
-        message.reply("You don't have enough permissions for this command");
+        message.reply("YOu need to be enrolled in The Ultimate Academy for Gifted Juveniles to use this command");
         return false;
       }
       break;
@@ -463,8 +463,7 @@ function checkPermisions(message, cmd, guildConf) {
       return true;
       break;
     default:
-      //<@!304718419427721217>
-      message.reply(`<@!${client.config.ownerid}>! Get your ass over here!`);
+      message.channel.send(`<@!${client.config.ownerid}>! Get your ass over here!`);
       return false;
   }
 }

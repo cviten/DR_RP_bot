@@ -13,8 +13,8 @@ exports.run = (client, guildConf, message, args) => {
     switch (args[1]) {
       case "coins":
         num = (num > 0) ? num : 0;
-        client.giveMoney(guildConf, person.user.id, num)
-        client.giveMoney(guildConf, message.channel.id, -num)
+        client.giveMoney(guildConf, person.id, num)
+        client.giveMoney(guildConf, message.author.id, -num)
         message.channel.send(`**${name}** gave ${target} ${num} coins`);
         client.guildConfigs.set(message.guild.id, guildConf);
         break;
