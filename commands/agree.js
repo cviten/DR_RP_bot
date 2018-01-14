@@ -4,11 +4,11 @@ exports.run = (client, guildConf, message, args) => {
   if (person) {
     const name = message.mentions.members.first().nickname || message.mentions.members.first().user.username;
     const text = args.slice(1).join(" ");
-    client.shout(message, "agree", name, text);
+    client.funcs.shout(message, "agree", name, text);
   } else {
     const name = "Everyone";
     const text = args.slice(0).join(" ");
-    client.shout(message, "agree", name, text);
+    client.funcs.shout(message, "agree", name, text);
   }
 };
 

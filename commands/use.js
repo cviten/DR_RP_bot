@@ -1,7 +1,7 @@
 exports.run = (client, guildConf, message, args) => {
   const item = args[0];
   const name = message.member.nickname || message.author.username;
-  const res = client.item_use(guildConf, message.author.id, item)
+  const res = client.funcs.tem_use(guildConf, message.author.id, item)
   if (res.res) {
     message.channel.send("**"+name+"**" + res.msg);
   } else {

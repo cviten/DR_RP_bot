@@ -13,13 +13,13 @@ exports.run = (client, guildConf, message, args) => {
     switch (args[1]) {
       case "coins":
         num = (num > 0) ? num : 0;
-        client.giveMoney(guildConf, person.id, num)
-        client.giveMoney(guildConf, message.author.id, -num)
+        client.funcs.giveMoney(guildConf, person.id, num)
+        client.funcs.giveMoney(guildConf, message.author.id, -num)
         message.channel.send(`**${name}** gave ${target} ${num} coins`);
         client.guildConfigs.set(message.guild.id, guildConf);
         break;
       case "item":
-        const res = client.item_trade(guildConf, message.author.id, person.id, num, amount)
+        const res = client.funcs.item_trade(guildConf, message.author.id, person.id, num, amount)
         if (res.res) {
           message.channel.send("**" + name + "**" + res.msg + "**" + target + "**");
         } else {

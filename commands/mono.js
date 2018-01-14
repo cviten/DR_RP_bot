@@ -1,6 +1,6 @@
 exports.run = (client, guildConf, message, args) => {
   const playerID = message.author.id;
-  const res = client.mono(guildConf, playerID);
+  const res = client.funcs.mono(guildConf, playerID);
   if (res.res) {
     message.channel.send(res.msg);
   } else {

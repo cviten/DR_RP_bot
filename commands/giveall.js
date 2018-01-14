@@ -6,7 +6,7 @@ exports.run = (client, guildConf, message, args) => {
   };
   for (let person in guildConf.players) {
     //guildConf.players[person].coins = parseInt(guildConf.players[person].coins) + parseInt(num);
-    client.giveMoney(guildConf ,person, num);
+    client.funcs.giveMoney(guildConf ,person, num);
   };
   message.channel.send(`All students were given ${num} coins`);
   client.guildConfigs.set(message.guild.id, guildConf);

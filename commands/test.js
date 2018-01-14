@@ -1,5 +1,5 @@
 exports.run = (client, guildConf, message, args) => {
-  message.channel.send("Test");
+  message.channel.send("Test").catch( err => console.log("Error test:" + err));
   //client.IsPlayer(message);
 }
 

@@ -1,7 +1,8 @@
 exports.run = (client, guildConf, message, args) => {
-  const item = args[0];
+  const item = args[1];
+  const op = args[0]
   const name = message.member.nickname || message.author.username;
-  const res = client.shop(guildConf, message.author.id, item, "buy")
+  const res = client.funcs.shop(guildConf, message.author.id, item, op)
   if (res.res) {
     message.channel.send(res.msg);
   } else {
@@ -16,5 +17,5 @@ exports.config = {
 
 exports.help = {
   name: "Shop",
-  desc: "Lets you buy an item"
+  desc: "Lets you buy and sell items"
 };

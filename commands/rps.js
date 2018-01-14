@@ -5,7 +5,7 @@ exports.run = (client, guildConf, message, args) => {
     message.reply("Wrong bet");
     return;
   };
-  const res = client.rps(guildConf, playerID, bet, sign);
+  const res = client.funcs.rps(guildConf, playerID, bet, sign);
   if (res.res) {
     message.channel.send(res.msg);
   } else {
