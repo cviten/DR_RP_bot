@@ -1,5 +1,5 @@
 exports.run = (client, guildConf, message, args) => {
-  const prize_limit = 1000;
+  //const prize_limit = 1000;
 
 };
 

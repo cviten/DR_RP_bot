@@ -15,6 +15,14 @@ function Answer(res, msg) {
 }
 
 let client = {};
+
+//DB functions
+/*
+let db = {
+  guildConfigs = new Enmap({provider: new EnmapLevel({name: "guildConfigs"})});
+
+}
+*/
 //Mod operations
 
 client.item_give = (guildConf, playerID, itemID, n) => {
@@ -173,7 +181,7 @@ client.giveMoney = (guildConf, playerID, amount) => {
   player.coins = parseInt(guildConf.players[playerID].coins) + parseInt(amount);
 }
 
-//Game operations
+//Casino operations
 
 client.mono = (guildConf, playerID) => {
   const player = guildConf.players[playerID];

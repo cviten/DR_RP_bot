@@ -677,6 +677,120 @@
     "like": "Gonta, K1-B0, Kaito, Kokichi, Tenko",
     "love": "None"
   },
+  "114":{
+    "name": "Dark Belt",
+    "desc": "A black-ish belt worn with karate clothes. It can only be worn by those with justice in their hearts.",
+    "like": "Gonta, K1-B0, Kaito, Kokichi, Tenko",
+    "love": "None"
+  },
+  "115":{
+    "name": "Dark Belt",
+    "desc": "A black-ish belt worn with karate clothes. It can only be worn by those with justice in their hearts.",
+    "like": "Gonta, K1-B0, Kaito, Kokichi, Tenko",
+    "love": "None"
+  },
+  "116":{
+    "name": "Dark Belt",
+    "desc": "A black-ish belt worn with karate clothes. It can only be worn by those with justice in their hearts.",
+    "like": "Gonta, K1-B0, Kaito, Kokichi, Tenko",
+    "love": "None"
+  },
+  "117":{
+    "name": "Dark Belt",
+    "desc": "A black-ish belt worn with karate clothes. It can only be worn by those with justice in their hearts.",
+    "like": "Gonta, K1-B0, Kaito, Kokichi, Tenko",
+    "love": "None"
+  },
+  "118":{
+    "name": "Dark Belt",
+    "desc": "A black-ish belt worn with karate clothes. It can only be worn by those with justice in their hearts.",
+    "like": "Gonta, K1-B0, Kaito, Kokichi, Tenko",
+    "love": "None"
+  },
+  "119":{
+    "name": "Dark Belt",
+    "desc": "A black-ish belt worn with karate clothes. It can only be worn by those with justice in their hearts.",
+    "like": "Gonta, K1-B0, Kaito, Kokichi, Tenko",
+    "love": "None"
+  },
+  "120":{
+    "name": "Dark Belt",
+    "desc": "A black-ish belt worn with karate clothes. It can only be worn by those with justice in their hearts.",
+    "like": "Gonta, K1-B0, Kaito, Kokichi, Tenko",
+    "love": "None"
+  },
+  "121":{
+    "name": "Dark Belt",
+    "desc": "A black-ish belt worn with karate clothes. It can only be worn by those with justice in their hearts.",
+    "like": "Gonta, K1-B0, Kaito, Kokichi, Tenko",
+    "love": "None"
+  },
+  "122":{
+    "name": "Dark Belt",
+    "desc": "A black-ish belt worn with karate clothes. It can only be worn by those with justice in their hearts.",
+    "like": "Gonta, K1-B0, Kaito, Kokichi, Tenko",
+    "love": "None"
+  },
+  "123":{
+    "name": "Dark Belt",
+    "desc": "A black-ish belt worn with karate clothes. It can only be worn by those with justice in their hearts.",
+    "like": "Gonta, K1-B0, Kaito, Kokichi, Tenko",
+    "love": "None"
+  },
+  "124":{
+    "name": "Dark Belt",
+    "desc": "A black-ish belt worn with karate clothes. It can only be worn by those with justice in their hearts.",
+    "like": "Gonta, K1-B0, Kaito, Kokichi, Tenko",
+    "love": "None"
+  },
+  "125":{
+    "name": "Dark Belt",
+    "desc": "A black-ish belt worn with karate clothes. It can only be worn by those with justice in their hearts.",
+    "like": "Gonta, K1-B0, Kaito, Kokichi, Tenko",
+    "love": "None"
+  },
+  "126":{
+    "name": "Dark Belt",
+    "desc": "A black-ish belt worn with karate clothes. It can only be worn by those with justice in their hearts.",
+    "like": "Gonta, K1-B0, Kaito, Kokichi, Tenko",
+    "love": "None"
+  },
+  "127":{
+    "name": "Dark Belt",
+    "desc": "A black-ish belt worn with karate clothes. It can only be worn by those with justice in their hearts.",
+    "like": "Gonta, K1-B0, Kaito, Kokichi, Tenko",
+    "love": "None"
+  },
+  "128":{
+    "name": "Dark Belt",
+    "desc": "A black-ish belt worn with karate clothes. It can only be worn by those with justice in their hearts.",
+    "like": "Gonta, K1-B0, Kaito, Kokichi, Tenko",
+    "love": "None"
+  },
+  "129":{
+    "name": "Dark Belt",
+    "desc": "A black-ish belt worn with karate clothes. It can only be worn by those with justice in their hearts.",
+    "like": "Gonta, K1-B0, Kaito, Kokichi, Tenko",
+    "love": "None"
+  },
+  "130":{
+    "name": "EMP Grenade",
+    "desc": "Miu's EMP Grenade",
+    "like": "-",
+    "love": "-"
+  },
+  "131":{
+    "name": "Wedding Rings",
+    "desc": "Wedding rings, which tied your destiny with Mono- emmmm your lover. Have symbol of Gifted Inmates Academy engraved in it.",
+    "like": "-",
+    "love": "-"
+  },
+  "132":{
+    "name": "Wedding Ring",
+    "desc": "Wedding ring, which tied your destiny with Mono- emmmm your lover. Have symbol of Gifted Inmates Academy engraved in it.",
+    "like": "-",
+    "love": "-"
+  },
   "150":{
     "name": "Love Key",
     "desc": "A key to certain places filled with greed and lust. You can give it away, but something good might happen if you keep it.",
@@ -725,22 +839,34 @@
     "like": "-",
     "love": "-"
   },
+  "158":{
+    "name": "Space Love Key",
+    "desc": "A key to certain places filled with greed, lust and zero gravity?",
+    "like": "-",
+    "love": "-"
+  },
+  "159":{
+    "name": "Talent Stone",
+    "desc": "This stone can grant you an Ultimate talent but it takes something in return...",
+    "like": "-",
+    "love": "-"
+  },
   "160":{
-    "name": "EMP Grenade",
-    "desc": "Miu's EMP Grenade",
+    "name": "Past Stone",
+    "desc": "Return to your, old, boring, misirable life where you are nothing! Don't even think about going up - you don't have a chance... This stone won't help you remember where you put that keys, not that you will need them.",
     "like": "-",
     "love": "-"
   },
   "161":{
-    "name": "Wedding Rings",
+    "name": "Temp 161",
     "desc": "Wedding rings, which tied your destiny with Mono- emmmm your lover. Have symbol of Gifted Inmates Academy engraved in it.",
     "like": "-",
     "love": "-"
   },
   "-1":{
     "name": "Strange Object",
-    "desc": "My stufffffff!!!! few things were broken 11110000 xor 0x234",
-    "like": "-",
-    "love": "-"
+    "desc": "------ abcdcdcdcd 11037 Let's get funky! Bloody Destiny",
+    "like": "?",
+    "love": "!"
   }
 }

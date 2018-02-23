@@ -4,7 +4,7 @@ exports.run = (client, guildConf, message, args) => {
 }
 
 exports.config = {
-  type: "Everyone"
+  type: "Debug"
 };
 
 exports.help = {
