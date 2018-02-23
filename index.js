@@ -83,6 +83,7 @@ function checkPermisions(message, cmd, guildConf) {
       if (!(guildConf.players.hasOwnProperty(message.author.id))) {
         guildConf.players[message.author.id] = {coins : 200, items: {}};
         client.guildConfigs.set(message.guild.id, guildConf);
+        message.reply("Welcome to The Ultimate Academy for Gifted Juveniles. Hope you enjoy stay here!")
       }
     }
     return true;

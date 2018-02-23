@@ -359,10 +359,12 @@ client.say = (message, channel, text) => {
 };
 
 client.log = (guildConf, message, channel, text) => {
+  if (message.guild.id == config.guildV3) {
   if (guildConf.log && (config.summit_channels.indexOf(channel) != -1)) {
     message.guild.channels.get(guildConf.log).send(`**${message.author.username}** sent a message in **${message.guild.channels.get(channel).name}**:\n\`\`\`${text}\`\`\``);
   } else {
     message.guild.channels.get(config.summit_log).send(`**${message.author.username}** sent a message in **${message.guild.channels.get(channel).name}**:\n\`\`\`${text}\`\`\``);
+  }
   }
 };
 
