@@ -8,5 +8,6 @@ exports.config = {
 
 exports.help = {
   name: "Coin flip",
+  cmd: "coin",
   desc: "Flips a coin"
 };

@@ -858,8 +858,14 @@
     "love": "-"
   },
   "161":{
-    "name": "Temp 161",
-    "desc": "Wedding rings, which tied your destiny with Mono- emmmm your lover. Have symbol of Gifted Inmates Academy engraved in it.",
+    "name": "Myth Stone",
+    "desc": "Myth creature for a day",
+    "like": "-",
+    "love": "-"
+  },
+  "162":{
+    "name": "Succubus Love Key",
+    "desc": "This key works like an bomb. Everyone in range of 5 kilometers will be affected",
     "like": "-",
     "love": "-"
   },

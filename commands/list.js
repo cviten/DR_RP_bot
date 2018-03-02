@@ -1,13 +1,23 @@
 exports.run = (client, guildConf, message, args) => {
-  //const prize_limit = 1000;
-
+  let s="";
+  let i=0;
+  client.commands.map(cmd => {
+    let cmdLevel = client.rolesV3[cmd.config.type];
+    let permLevel = client.checkPerm(message);
+    if (cmdLevel <= permLevel) {
+      i++;
+      s+=`${i}. \`${cmd.help.cmd}\` - ${cmd.help.desc}\n`
+    }
+  })
+  message.channel.send(s).catch(err => console.log(err))
 };
 
 exports.config = {
-  type: "Debug"
+  type: "Student"
 };
 
 exports.help = {
-  name: "",
-  desc: ""
+  name: "List",
+  cmd: "list",
+  desc: "List all commands available to you"
 };

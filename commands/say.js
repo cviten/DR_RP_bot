@@ -12,5 +12,6 @@ exports.config = {
 
 exports.help = {
   name: "Say",
+  cmd: "say",
   desc: "Says message as Monokuma"
 };

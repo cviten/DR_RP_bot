@@ -15,5 +15,6 @@ exports.config = {
 
 exports.help = {
   name: "Use",
+  cmd: "use",
   desc: "Lets you use the item"
 };

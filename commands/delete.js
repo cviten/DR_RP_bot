@@ -21,5 +21,6 @@ exports.config = {
 
 exports.help = {
   name: "Delete",
+  cmd: "delete",
   desc: "Deletes stuff"
 };

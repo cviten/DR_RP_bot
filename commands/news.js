@@ -12,5 +12,6 @@ exports.config = {
 
 exports.help = {
   name: "News",
+  cmd: "news",
   desc: "Says message as Monokuma in news channel"
 };

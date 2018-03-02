@@ -39,5 +39,6 @@ exports.config = {
 
 exports.help = {
   name: "Trade",
-  desc: "Gives your coins or items to other student"
+  cmd: "trade",
+  desc: "Trade your coins or items to other student"
 };

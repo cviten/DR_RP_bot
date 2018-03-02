@@ -18,5 +18,7 @@ exports.config = {
 
 exports.help = {
   name: "Agreement",
-  desc: "Agrees with somebody"
+  cmd: "agree",
+  desc: "Agrees with somebody",
+  example : "Agree with everybody:\n`m!agree That was a knife`\nAgree with Naegi:\n`m!agree @Naegi knife was missing today's morning`"
 };

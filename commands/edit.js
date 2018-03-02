@@ -14,6 +14,7 @@ exports.config = {
 };
 
 exports.help = {
-  name: "Name",
-  desc: "Description"
+  name: "Editing",
+  cmd: "edt",
+  desc: "Editing last bot's meassge in the channel"
 };

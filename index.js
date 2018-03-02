@@ -6,7 +6,7 @@ client.config = require("./config.json");
 //const itemsV3 = require('./itemsV3.json');
 //const shopV3 = require('./shopV3.json');
 //const sellV3 = require('./sellV3.json');
-const rolesV3 = require('./rolesV3.json');
+client.rolesV3 = require('./rolesV3.json');
 
 const Enmap = require('enmap');
 const EnmapLevel = require('enmap-level');
@@ -61,7 +61,7 @@ const newSettings = {
 };
 
 
-function checkPerm(message) {
+client.checkPerm = (message) => {
   let role = 0;
   if (message.author.id == client.config.ownerid) { return 10; };
   //if (message.member.roles.has(role.id)) {return 4; };
@@ -75,10 +75,10 @@ function checkPerm(message) {
   if (message.member.roles.has(role.id)) {return 1; };
 }
 
-function checkPermisions(message, cmd, guildConf) {
-  const cmdLevel = rolesV3[cmd.config.type];
-  const permLevel = checkPerm(message);
-  if (permLevel > cmdLevel) {
+client.checkPermisions = (message, cmd, guildConf) => {
+  const cmdLevel = client.rolesV3[cmd.config.type];
+  const permLevel = client.checkPerm(message);
+  if (permLevel >= cmdLevel) {
     if (permLevel == 3) {
       if (!(guildConf.players.hasOwnProperty(message.author.id))) {
         guildConf.players[message.author.id] = {coins : 200, items: {}};
@@ -160,7 +160,7 @@ client.on('message', message => {
   const cmd = client.commands.get(command);
 
   const guildConf = client.guildConfigs.get(message.guild.id);
-  if (cmd && checkPermisions(message, cmd, guildConf)) {
+  if (cmd && client.checkPermisions(message, cmd, guildConf)) {
     cmd.run(client, guildConf, message, args);
   }
 

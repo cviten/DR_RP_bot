@@ -15,14 +15,100 @@ function Answer(res, msg) {
 }
 
 let client = {};
-
-//DB functions
 /*
-let db = {
-  guildConfigs = new Enmap({provider: new EnmapLevel({name: "guildConfigs"})});
+function ItemCheck(itemID) { return new Promise(function(resolve, reject) {
+  if ((itemID >= 1  && itemID <= 132) || (itemID >= 150  && itemID <= 162)) {
+    // 1 - 113   - Original DRV3 items
+    // 114 - 129 - Underwear (needed to be added)
+    // 130 - 132 - Added items (EMP grenade and rings)
+    // 150 - 162 - Keys and stones
+    resolve(true);
+  } else {
+    reject("Such item does not exist");
+  }
+});
+}
+//DB functions
 
 }
+
+const db = {
+  //guildConfigs = new Enmap({provider: new EnmapLevel({name: "guildConfigs"})})
+
+  //=== Private functions ===
+  startDB : (itemsV3) => {
+    if (!this.db) {
+      this.db = new Enmap({provider: new EnmapLevel({name: "Players"})});
+      //this.items = itemsV3;
+    }
+    return db;
+  },
+  workItem : (playerID, itemID, amount) => {
+    const player = db.get(playerID);
+    if (!player.items.hasOwnProperty(itemID)) {
+      player.items[itemID] = parseInt(amount);  // number of items
+    } else {
+      player.items[itemID] += parseInt(amount);
+    }
+    if (player.items[itemID] <= 0) {
+      delete player.items[itemID];
+    }
+    db.set(playerID, player)
+  },
+  workMoney : (playerID, amount) => {
+    const player = db.get(playerID);
+    player.coins += parseInt(amount);
+    if (player.coins < 0) {
+      player.coins = 0;
+    }
+    db.set(playerID, player)
+  },
+
+  //=== Public functions ===
+  //Getters
+  getPlayer : (playerID) => { new Promise(function(resolve, reject) {
+    const player = db.get(playerID);
+    if (player) {
+      resolve(player);
+    } else {
+      reject("")
+    }
+  });
+  },
+  getChannel : (name) => {
+
+  }
+}
+
+  //Work with db
+  //Money
+  giveMoney : (playerID, amount) => { new Promise(function(resolve, reject) {
+    const player
+  });
+  },
+  takeMoney : (playerID, amount) => {
+
+  },
+  //Items
+  giveItem : (playerID, itemID, amount) => {
+
+  },
+  takeItem : (playerID, itemID, amount) => {
+    return new Promise(function(resolve, reject) {
+      if (itemV3.hasOwnProperty(itemID)) { // Replace with item.CheckItem(ItemID)
+        if (true) {
+
+        } else {
+
+        }
+      } else {
+        reject("Such item does not exist");
+      }
+    });
+  }
+}
 */
+
 //Mod operations
 
 client.item_give = (guildConf, playerID, itemID, n) => {

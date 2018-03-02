@@ -18,5 +18,6 @@ exports.config = {
 
 exports.help = {
   name: "Give All",
+  cmd: "giveall",
   desc: "Gives Money to all students"
 };

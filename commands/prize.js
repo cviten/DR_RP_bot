@@ -29,5 +29,6 @@ exports.config = {
 
 exports.help = {
   name: "Prize",
+  cmd: "prize",
   desc: "Gives a prize to somebody"
 };

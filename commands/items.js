@@ -14,5 +14,6 @@ exports.config = {
 
 exports.help = {
   name: "Items",
+  cmd: "items",
   desc: "Shows item of the student"
 };

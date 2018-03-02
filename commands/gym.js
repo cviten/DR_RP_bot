@@ -12,6 +12,7 @@ exports.config = {
 };
 
 exports.help = {
-  name: "News",
+  name: "Gym",
+  cmd: "gym",
   desc: "Says message as Monokuma in gym channel"
 };

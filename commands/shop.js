@@ -17,5 +17,6 @@ exports.config = {
 
 exports.help = {
   name: "Shop",
+  cmd: "shop",
   desc: "Lets you buy and sell items"
 };

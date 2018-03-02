@@ -19,5 +19,6 @@ exports.config = {
 
 exports.help = {
   name: "Description",
+  cmd: "desc",
   desc: "Gives you description of the item"
 };

@@ -15,5 +15,6 @@ exports.config = {
 
 exports.help = {
   name: "Break",
+  cmd: "break",
   desc: "Breaks the item"
 };

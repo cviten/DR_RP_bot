@@ -9,5 +9,6 @@ exports.config = {
 
 exports.help = {
   name: "test",
+  cmd: "test",
   desc: "Simple test message"
 }
