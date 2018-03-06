@@ -40,5 +40,6 @@ exports.config = {
 exports.help = {
   name: "Trade",
   cmd: "trade",
-  desc: "Trade your coins or items to other student"
+  desc: "Trade your coins or items to other student",
+  example: "Takes from you and gives Junko 500 coins:\n`m!trade @Junko coins 500`\n`m!trade @Junko coin 500`\nTakes from you and gives Mukuro Aluminum Water Bottle:\n`m!trade @Mukuro item 80`\n`m!trade @Mukuro items 80`"
 };

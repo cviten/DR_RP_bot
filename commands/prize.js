@@ -30,5 +30,6 @@ exports.config = {
 exports.help = {
   name: "Prize",
   cmd: "prize",
-  desc: "Gives a prize to somebody"
+  desc: "Gives a prize to somebody",
+  example: "I need to rewrite this command"
 };

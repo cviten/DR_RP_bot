@@ -21,5 +21,6 @@ exports.config = {
 exports.help = {
   name: "Rock, Paper,Scissors",
   cmd: "rps",
-  desc: "Lets you play Rock, Paper,Scissors with bets"
+  desc: "Lets you play Rock, Paper,Scissors with bets",
+  example: "Betting 100 coins on rock:\n`m!rps 100 r`\n`m!rps 100 rock`\n`m!rps 100 R`\n`m!rps 100 Rock`"
 };

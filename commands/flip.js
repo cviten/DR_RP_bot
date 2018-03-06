@@ -9,5 +9,6 @@ exports.config = {
 exports.help = {
   name: "Coin flip",
   cmd: "flip",
-  desc: "Flips a coin"
+  desc: "Flips a coin",
+  example: "`m!flip`"
 };

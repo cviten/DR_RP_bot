@@ -9,5 +9,6 @@ exports.config = {
 exports.help = {
   name: "Detention",
   cmd: "deten",
-  desc: "Sends people into detention"
+  desc: "Sends people into detention",
+  example: "Reserved"
 };

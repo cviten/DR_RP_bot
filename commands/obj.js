@@ -19,5 +19,6 @@ exports.config = {
 exports.help = {
   name: "Objection",
   cmd: "obj",
-  desc: "Objects to somebody"
+  desc: "Objects to somebody",
+  example: "Object to everyone:\n`m!obj She is the liar, you know.`\nObject to Togami:`m!obj @Togami No! You tell them, Togami!`"
 };

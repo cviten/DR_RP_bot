@@ -9,5 +9,6 @@ exports.config = {
 exports.help = {
   name: "Coins",
   cmd: "coins",
-  desc: "Displays amount of coins"
+  desc: "Displays amount of coins",
+  example : "m!coins"
 };

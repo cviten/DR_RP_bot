@@ -13,5 +13,6 @@ exports.config = {
 exports.help = {
   name: "Reload",
   cmd: "reload",
-  desc: "Reloads the command"
+  desc: "Reloads the command",
+  example: "Haven't used it yet..."
 };

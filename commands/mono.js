@@ -16,5 +16,6 @@ exports.config = {
 exports.help = {
   name: "MonoMono Machine",
   cmd: "mono",
-  desc: "Lets win one of the item"
+  desc: "Lets win one of the item",
+  example: "`m!mono`"
 };

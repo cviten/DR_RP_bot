@@ -20,5 +20,6 @@ exports.config = {
 exports.help = {
   name: "Description",
   cmd: "desc",
-  desc: "Gives you description of the item"
+  desc: "Gives you description of the item",
+  example : "Shows description of the item with ID 63:\n`m!desc`"
 };

@@ -15,7 +15,16 @@ function Answer(res, msg) {
 }
 
 let client = {};
-/*
+
+function ParseError(err) {
+  if (err instanceof Error) {
+    return err
+  } else {
+    console.log(err);
+    return `<@!${client.config.ownerid}>, something wrong happened!`;
+  }
+}
+
 function ItemCheck(itemID) { return new Promise(function(resolve, reject) {
   if ((itemID >= 1  && itemID <= 132) || (itemID >= 150  && itemID <= 162)) {
     // 1 - 113   - Original DRV3 items

@@ -19,5 +19,6 @@ exports.config = {
 exports.help = {
   name: "List",
   cmd: "list",
-  desc: "List all commands available to you"
+  desc: "List all commands available to you",
+  example: "`m!list`"
 };

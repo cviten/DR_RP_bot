@@ -9,5 +9,6 @@ exports.config = {
 exports.help = {
   name: "Status",
   cmd: "status",
-  desc: "Lets you view you stats"
+  desc: "Lets you view you stats",
+  example: "Still haven't wrote this yet"
 };

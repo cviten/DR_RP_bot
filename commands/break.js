@@ -16,5 +16,6 @@ exports.config = {
 exports.help = {
   name: "Break",
   cmd: "break",
-  desc: "Breaks the item"
+  desc: "Breaks the item",
+  example : "Break iten with ID 120:\n`m!break 120`"
 };

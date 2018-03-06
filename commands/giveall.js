@@ -19,5 +19,6 @@ exports.config = {
 exports.help = {
   name: "Give All",
   cmd: "giveall",
-  desc: "Gives Money to all students"
+  desc: "Gives Money to all students",
+  example: "Gives everyone 200 coins:\n`m!giveall 200`"
 };

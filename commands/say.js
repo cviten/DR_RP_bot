@@ -13,5 +13,6 @@ exports.config = {
 exports.help = {
   name: "Say",
   cmd: "say",
-  desc: "Says message as Monokuma"
+  desc: "Says message as Monokuma",
+  example: "`m!say Donuts!`"
 };

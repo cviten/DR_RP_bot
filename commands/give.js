@@ -39,5 +39,6 @@ exports.config = {
 exports.help = {
   name: "Give",
   cmd: "give",
-  desc: "Gives item or coins to the person"
+  desc: "Gives item or coins to the person",
+  example: "Give 1000 coins to Togami:\n `m!give @Togami coins 1000`\nGives Monkey Paw to Kiyo:\n `m!give @Kiyo item 88`\nGives 10 Bird Food to Himiko:\n `m!give @Himiko item 66 10`"
 };

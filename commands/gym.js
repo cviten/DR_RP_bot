@@ -14,5 +14,6 @@ exports.config = {
 exports.help = {
   name: "Gym",
   cmd: "gym",
-  desc: "Says message as Monokuma in gym channel"
+  desc: "Says message as Monokuma in gym channel",
+  example: "I still don't know what's wrong"
 };

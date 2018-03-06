@@ -10,5 +10,6 @@ exports.config = {
 exports.help = {
   name: "Dice",
   cmd: "dice",
-  desc: "Rolls a dice"
+  desc: "Rolls a dice",
+  example : "m!dice"
 };
