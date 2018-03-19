@@ -1,4 +1,4 @@
-exports.run = (client, guildConf, message, args) => {
+exports.run = (client, message, args) => {
   const user = message.mentions.users.first();
   const amount = parseInt(args[0]) || parseInt(args[1]);
   if (amount > 100 || amount < 2) {
@@ -14,7 +14,7 @@ exports.run = (client, guildConf, message, args) => {
       messages = messages.filter(m => m.author.id === filterBy).array().slice(0, amount);
     }
     message.channel.bulkDelete(messages)
-      .then(message.channel.send(`${amount} messages was been forgotten`))
+      .then(message.channel.send(`${amount} messages have been forgotten`))
       .catch(error => console.log(error.stack));
   });
 };

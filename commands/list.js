@@ -1,4 +1,4 @@
-exports.run = (client, guildConf, message, args) => {
+exports.run = (client, message, args) => {
   let s="";
   let i=0;
   client.commands.map(cmd => {

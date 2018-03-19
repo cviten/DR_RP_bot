@@ -1,4 +1,4 @@
-exports.run = (client, guildConf, message, args) => {
+exports.run = (client, message, args) => {
   n = Math.floor(Math.random() * (21 - 1)) + 1;
   message.channel.send(`:game_die: You rolled ${n}`);
 };
@@ -10,6 +10,6 @@ exports.config = {
 exports.help = {
   name: "Roll",
   cmd: "roll",
-  desc: "Rolls a dice",
+  desc: "Rolls a dice from 1 to 20",
   example: "`m!dice`"
 };

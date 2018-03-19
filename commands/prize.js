@@ -1,5 +1,7 @@
-exports.run = (client, guildConf, message, args) => {
+exports.run = (client, message, args) => {
   //const args = message.content.slice(client.config.prefix.length).trim().split(/ +/g);
+  message.channel.send("Temporary unavailable");
+  return 0;
   const person = message.mentions.members.first();
   const num = args[1];
 	if (message.author.id  = "330853547757404182") {

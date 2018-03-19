@@ -1,4 +1,4 @@
-exports.run = (client, guildConf, message, args) => {
+exports.run = (client, message, args) => {
   let newMsg = args.slice(0).join(" ");
   message.channel.fetchMessages({around: message.id, limit: 20})
     .then(messages => {

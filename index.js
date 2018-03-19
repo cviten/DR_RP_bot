@@ -1,46 +1,34 @@
-const Discord = require('discord.js');
-const client = new Discord.Client();
-const fs = require('fs');
+const Discord = require('discord.js')
+const client = new Discord.Client()
+const fs = require('fs')
 
-client.config = require("./config.json");
-//const itemsV3 = require('./itemsV3.json');
-//const shopV3 = require('./shopV3.json');
-//const sellV3 = require('./sellV3.json');
-client.rolesV3 = require('./rolesV3.json');
+client.config = require('./config.json')
+client.configV3 = require('./configV3')
+const db = require('./db')
+// const itemsV3 = require('./itemsV3.json');
+// const shopV3 = require('./shopV3.json');
+// const sellV3 = require('./sellV3.json');
+client.rolesV3 = client.configV3.rolesV3;
 
-const Enmap = require('enmap');
-const EnmapLevel = require('enmap-level');
-client.guildConfigs = new Enmap({provider: new EnmapLevel({name: "guildConfigs"})});
+const Enmap = require('enmap')
+const EnmapLevel = require('enmap-level')
+// client.guildConfigs = new Enmap({provider: new EnmapLevel({name: "guildConfigs"})});
 
-client.commands = new Enmap(); //Replace with Enmap
+client.commands = new Enmap() // Replace with Enmap
 
-client.funcs = require('./functions.js');
+client.funcs = require('./functions.js')
 
 
-fs.readdir("./commands/", (err, files) => {
+fs.readdir('./commands/', (err, files) => {
   if (err) return console.error(err);
   files.forEach(file => {
     let cmdFunction = require(`./commands/${file}`);
     let cmdName = file.split(".")[0];
-    client.commands.set(cmdName,cmdFunction);
+    client.commands.set(cmdName, cmdFunction);
   });
 });
 
-// Linix version
-process.on("SIGINT", function() {
-  console.log('Stopping the bot...');
-  client.guildConfigs.db.close();
-  process.exit();
-} );
 
-//Windows version
-process.on('message', function (msg) {
-  if (msg == 'shutdown') {
-    console.log('Stopping the bot...');
-    client.guildConfigs.db.close();
-    process.exit(0);
-  }
-})
 
 
 client.on('ready', () => {
@@ -73,17 +61,18 @@ client.checkPerm = (message) => {
   if (message.member.roles.has(role.id)) {return 2; };
   role = message.guild.roles.find("name", "Viewer");
   if (message.member.roles.has(role.id)) {return 1; };
+  return 0;
 }
 
-client.checkPermisions = (message, cmd, guildConf) => {
-  const cmdLevel = client.rolesV3[cmd.config.type];
+client.checkPermisions = (message, cmd) => {
+  const cmdLevel = client.configV3.rolesV3[cmd.config.type];
   const permLevel = client.checkPerm(message);
   if (permLevel >= cmdLevel) {
-    if (permLevel == 3) {
-      if (!(guildConf.players.hasOwnProperty(message.author.id))) {
-        guildConf.players[message.author.id] = {coins : 200, items: {}};
-        client.guildConfigs.set(message.guild.id, guildConf);
-        message.reply("Welcome to The Ultimate Academy for Gifted Juveniles. Hope you enjoy stay here!")
+    if (permLevel >= 3) {
+      if (!(db.db.get(message.author.id))) {
+        let startCoins = {coins : 10000, items: {'2': 10}};
+        db.db.set(message.author.id, startCoins);
+        //message.reply("Welcome to The Ultimate Academy for Gifted Juveniles. Hope you enjoy stay here!")
       }
     }
     return true;
@@ -104,53 +93,17 @@ client.checkPermisions = (message, cmd, guildConf) => {
       case 1:
         message.reply("Buy newest Danganronpa V3 for only 10 Hope Bagels! Otherwise this command won't be availbale for you!")
         break;
+      case 1:
+        message.reply("Are you sure you on the right server?")
+        break;
       default:
         message.channel.send(`Somebody ping <@!${client.config.ownerid}> for this!`);
+        console.log("Role idefication error");
     }
     return false;
   }
 }
 
-/*
-function checkPermisions(message, cmd, guildConf) {
-  switch (cmd.config.type) {
-    case "Debug":
-      if (message.author.id == client.config.ownerid) {
-        return true;
-      } else {
-        message.reply("Don't touch my code!")
-        return false;
-      }
-      break;
-    case "Mod":
-      if (message.member.roles.has(guildConf.modRole) || message.author.id == client.config.ownerid) {
-        return true;
-      } else {
-        message.reply("Mods are here for a reason")
-        return false;
-      }
-      break;
-    case "Student":
-      if (message.member.roles.has(guildConf.studentRole) || message.author.id == client.config.ownerid) {
-        if (!(guildConf.players.hasOwnProperty(message.author.id))) {
-          guildConf.players[message.author.id] = {coins : 200, items: {}};
-          client.guildConfigs.set(message.guild.id, guildConf);
-        }
-        return true;
-      } else {
-        message.reply("You need to be enrolled in The Ultimate Academy for Gifted Juveniles to use this command");
-        return false;
-      }
-      break;
-    case "Everyone":
-      return true;
-      break;
-    default:
-      message.channel.send(`<@!${client.config.ownerid}>! Get your ass over here!`);
-      return false;
-  }
-}
-*/
 
 client.on('message', message => {
   if (!message.content.startsWith(client.config.prefix) || message.author.bot) return;
@@ -159,9 +112,9 @@ client.on('message', message => {
   const command = args.shift().toLowerCase();
   const cmd = client.commands.get(command);
 
-  const guildConf = client.guildConfigs.get(message.guild.id);
-  if (cmd && client.checkPermisions(message, cmd, guildConf)) {
-    cmd.run(client, guildConf, message, args);
+  //const guildConf = 0;
+  if (cmd && client.checkPermisions(message, cmd)) {
+    cmd.run(client, message, args);
   }
 
 });

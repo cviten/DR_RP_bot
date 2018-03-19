@@ -1,4 +1,4 @@
-exports.run = (client, guildConf, message, args) => {
+exports.run = (client, message, args) => {
   message.channel.send((Math.floor(Math.random() * 2) == 0) ? 'Heads' : 'Tails').catch( err => console.log("Error test:" + err));
 };
 

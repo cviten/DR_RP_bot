@@ -1,7 +1,14 @@
-const config = require("./configV3.json");
-const itemsV3 = require('./itemsV3.json');
-const shopV3 = require('./shopV3.json');
-const sellV3 = require('./sellV3.json');
+var schedule = require('node-schedule')
+
+const db = require('./db')
+const configV3 = require('./configV3');
+var ParamError = require('./error').ParamError;
+var ItemCheck = require('./error').ItemCheck;
+
+//----------------------------------
+const config = configV3.configV3;
+const itemsV3 = configV3.itemsV3;
+const shopV3 = configV3.shopV3;
 
 const rps_table = [
     [0,-1,1],
@@ -9,198 +16,52 @@ const rps_table = [
     [-1,1,0]
 ];
 
-function Answer(res, msg) {
-  this.res = res;
-  this.msg = msg;
-}
-
 let client = {};
 
-function ParseError(err) {
-  if (err instanceof Error) {
-    return err
-  } else {
-    console.log(err);
-    return `<@!${client.config.ownerid}>, something wrong happened!`;
-  }
-}
-
-function ItemCheck(itemID) { return new Promise(function(resolve, reject) {
-  if ((itemID >= 1  && itemID <= 132) || (itemID >= 150  && itemID <= 162)) {
-    // 1 - 113   - Original DRV3 items
-    // 114 - 129 - Underwear (needed to be added)
-    // 130 - 132 - Added items (EMP grenade and rings)
-    // 150 - 162 - Keys and stones
-    resolve(true);
-  } else {
-    reject("Such item does not exist");
-  }
+var j = schedule.scheduleJob('30 14 * * *', function(){
+  db.db.map(player => {
+    player.coins += config.daily;
+  })
 });
-}
-//DB functions
 
-}
 
-const db = {
-  //guildConfigs = new Enmap({provider: new EnmapLevel({name: "guildConfigs"})})
-
-  //=== Private functions ===
-  startDB : (itemsV3) => {
-    if (!this.db) {
-      this.db = new Enmap({provider: new EnmapLevel({name: "Players"})});
-      //this.items = itemsV3;
-    }
-    return db;
-  },
-  workItem : (playerID, itemID, amount) => {
-    const player = db.get(playerID);
-    if (!player.items.hasOwnProperty(itemID)) {
-      player.items[itemID] = parseInt(amount);  // number of items
-    } else {
-      player.items[itemID] += parseInt(amount);
-    }
-    if (player.items[itemID] <= 0) {
-      delete player.items[itemID];
-    }
-    db.set(playerID, player)
-  },
-  workMoney : (playerID, amount) => {
-    const player = db.get(playerID);
-    player.coins += parseInt(amount);
-    if (player.coins < 0) {
-      player.coins = 0;
-    }
-    db.set(playerID, player)
-  },
-
-  //=== Public functions ===
-  //Getters
-  getPlayer : (playerID) => { new Promise(function(resolve, reject) {
-    const player = db.get(playerID);
-    if (player) {
-      resolve(player);
-    } else {
-      reject("")
-    }
-  });
-  },
-  getChannel : (name) => {
-
-  }
-}
-
-  //Work with db
-  //Money
-  giveMoney : (playerID, amount) => { new Promise(function(resolve, reject) {
-    const player
-  });
-  },
-  takeMoney : (playerID, amount) => {
-
-  },
-  //Items
-  giveItem : (playerID, itemID, amount) => {
-
-  },
-  takeItem : (playerID, itemID, amount) => {
-    return new Promise(function(resolve, reject) {
-      if (itemV3.hasOwnProperty(itemID)) { // Replace with item.CheckItem(ItemID)
-        if (true) {
-
+client.item_page = (playerID, page) => { return new Promise(function(resolve, reject) { //DB
+  db.getPlayer(playerID)
+  .then(player => {
+    if (!(Object.getOwnPropertyNames(player.items).length === 0)) {
+      const max_page = Math.floor(Object.getOwnPropertyNames(player.items).length / config.page_size);
+      page--;
+      page = (page > max_page) ? max_page : page;
+      let s = "";
+      let i = 0;
+      for (let item in player.items) {
+        i++;
+        if ( (i > page * config.page_size) && (i <= ((page + 1) * config.page_size) ) )
+        {
+          s = s + `id: ${item} | ${itemsV3[item].name} x ${player.items[item]}\n`;
         } else {
-
+          continue;
         }
-      } else {
-        reject("Such item does not exist");
       }
-    });
-  }
-}
-*/
-
-//Mod operations
-
-client.item_give = (guildConf, playerID, itemID, n) => {
-  if (client.isNormal(itemID) || (config.special_items.indexOf(parseInt(itemID)) != -1) || (config.added_items.indexOf(parseInt(itemID)) != -1) ) {
-    //const name = message.mentions.members.first().nickname || message.mentions.members.first().user.username;
-    n = (!(isNaN(n))) ? parseInt(n) : 1
-    client.item_get(guildConf, playerID, itemID, n);
-    //message.reply(`Item was given to ${name}`)
-    return new Answer(true, "Item was given to ");
-    //client.guildConfigs.set(message.guild.id, guildConf);
-  } else {
-    //message.reply("Don't have this item in the warehouse");
-    return new Answer(false, "Don't have this item in the warehouse");
-  }
-}
-
-//return new Answer(true, ` gave *${itemsV3[itemID].name}* to `);
-client.item_trade = (guildConf, playerID, targetID, itemID, n) => {
-  if (client.isNormal(itemID) || (config.special_items.indexOf(parseInt(itemID)) != -1) || (config.added_items.indexOf(parseInt(itemID)) != -1) ) {
-    if (client.item_take(guildConf, playerID, itemID, n) == 0) {
-      n = (!(isNaN(n))) ? parseInt(n) : 1
-      client.item_get(guildConf, targetID, itemID, n);
+      page++;
+      const page_s = `${page}`
+      const msg = "Your items (page " + page_s + ` of ${max_page+1} ):` + "```" + s + "```"
+      resolve(msg);
     } else {
-      return new Answer(false, "Don't try to give something out of empty pockets");
+      //reject(new ParamError("You don't have anything... :("));
+      resolve("You don't have anything... :(");
     }
-    return new Answer(true, ` gave **${itemsV3[itemID].name}** to `);
-  } else {
-    return new Answer(false, "Don't have this item in the warehouse");
-  }
-}
-
-
-//Items operations
-
-client.item_get = (guildConf, playerID, itemID, n) => {
-  const player = guildConf.players[playerID];
-  n = !(isNaN(n)) ? parseInt(n) : 1
-  if (!player.items.hasOwnProperty(itemID)) {
-    player.items[itemID] = parseInt(n);  // number of items
-  } else {
-    player.items[itemID] += parseInt(n);
-  }
+    })
+  .catch(err => {
+    reject(err);
+    });
+})
 };
 
-client.item_take = (guildConf, playerID, itemID, n) => {
-  const player = guildConf.players[playerID];
-  n = !(isNaN(n)) ? parseInt(n) : 1
-  if (!player.items.hasOwnProperty(itemID)) {
-    //player.items[itemID] = 1;  // number of items
-    return -1;
-  } else {
-    player.items[itemID] -= n;
-    if (player.items[itemID] <= 0) {
-      delete player.items[itemID];
-    }
-    return 0;
-  }
-}
-
-client.item_page = (guildConf, playerID, page) => {
-  const max_page = Math.floor(Object.getOwnPropertyNames(guildConf.players[playerID].items).length / config.page_size);
-  page--;
-  page = (page > max_page) ? max_page : page;
-  let s = "";
-  let i = 0;
-  for (let item in guildConf.players[playerID].items ) {
-    i++;
-    if ( (i > page * config.page_size) && (i <= ((page + 1) * config.page_size) ) )
-    {
-      s = s + `id: ${item} | ${itemsV3[item].name} x ${guildConf.players[playerID].items[item]}\n`;
-    } else {
-      continue;
-    }
-  }
-  page++;
-  const page_s = `${page}`
-  const msg = "Your items (page " + page_s + "): ```" + s + "```"
-  return new Answer(true, msg);
-}
-
-client.item_desc = (itemID) => {
-  if ( ( client.isNormal(itemID) || (config.special_items.indexOf(parseInt(itemID)) != -1) || (config.added_items.indexOf(parseInt(itemID)) != -1) ) ) {
-    color = (config.special_items.indexOf(parseInt(itemID)) != -1) ? 0xeccd15 : 0x21b613
+client.item_desc = (itemID) => { return new Promise(function(resolve, reject) { //Items
+  ItemCheck(itemID)
+  .then(() => {
+    color = (config.special_items.indexOf(parseInt(itemID)) != -1) ? 0xeccd15 : 0x21b613;
     const embed = {
       "title": itemsV3[itemID].name,
       "author": {
@@ -224,191 +85,195 @@ client.item_desc = (itemID) => {
         },
       ]
     };
-    return new Answer(true, embed);
-  } else {
-    return new Answer(false, "We don't have this item");
-  }
+    resolve(embed);
+  })
+  .catch(() => {
+    //reject("We don't have this item");
+    reject( new ParamError("We don't have this item"))
+  })
+})
 }
 
-client.item_break = (guildConf, playerID, itemID) => {
+client.item_break = (playerID, itemID) => { return new Promise(function(resolve, reject) { //Items, DB
+    db.takeItem(playerID,itemID,1).then(res => {
+      let item_name = `*${itemsV3[itemID].name}*`;
+      const msg = item_name + " was broken";
+      resolve(msg);
+    }).catch(err => reject(err))
   //const item = args.slice(0).join(" ");
   //const player = guildConf.players[message.author.id];
-  if (client.isNormal(itemID) || (config.special_items.indexOf(parseInt(itemID)) != -1) || (config.added_items.indexOf(parseInt(itemID)) != -1) ) {
-    if (client.item_take(guildConf,playerID, itemID, 1) == 0) {
-      //message.channel.send(`*${itemsV3[item].name}* was broken`);
-      const item_name = `*${itemsV3[itemID].name}*`
-      const msg = item_name + " was broken";
-      return new Answer(true, msg);
-    } else {
-      //message.channel.send(`You don't have this item.`);
-      return new Answer(false, "You don't have this item.");
-    };
-  } else {
-    //message.channel.send("Something wrong with number");
-    return new Answer(false, "Something wrong with number");
-  }
+})
 }
 
-client.item_use = (guildConf, playerID, itemID) => {
-  if (client.isNormal(itemID) || (config.special_items.indexOf(parseInt(itemID)) != -1) || (config.added_items.indexOf(parseInt(itemID)) != -1) ) {
-    if (client.item_take(guildConf,playerID, itemID, 1) == 0) {
-      //message.channel.send(`*${itemsV3[item].name}* was broken`);
-      if (!(config.special_items.indexOf(parseInt(itemID)) != -1)) {
-        client.item_get(guildConf,playerID, itemID, 1);
+client.item_use = (playerID, itemID) => { return new Promise(function(resolve, reject) {
+  Promise.all([db.getPlayer(playerID), ItemCheck(itemID)])
+    .then(res => {
+      if (res[0].items.hasOwnProperty(itemID)) {
+        if (config.special_items.includes(parseInt(itemID))) {
+          return db.takeItem(playerID, itemID, 1, itemID);
+        }
+      } else {
+        reject(new ParamError("You don't have this item"))
       }
-      const item_name = `*${itemsV3[itemID].name}*`
-      const msg = " is using " + item_name;
-      return new Answer(true, msg);
-    } else {
-      //message.channel.send(`You don't have this item.`);
-      return new Answer(false, "You don't have this item.");
-    };
-  } else {
-    //message.channel.send("Something wrong with number");
-    return new Answer(false, "Something wrong with number");
-  }
-}
+      return db.nop(itemID);
+    })
+    .then(res => {
+      resolve(`${itemsV3[res[1]].name}`)
+    })
+    .catch(err => {
+      reject(err)
+    });
+})
+}; // Items, DB
 
 //Money operations
-
+/*
 client.giveMoney = (guildConf, playerID, amount) => {
   const player = guildConf.players[playerID];
   player.coins = parseInt(guildConf.players[playerID].coins) + parseInt(amount);
 }
-
+*/
 //Casino operations
 
-client.mono = (guildConf, playerID) => {
-  const player = guildConf.players[playerID];
-  if (config.monoPrice > player.coins) {
-    //message.channel.send("You don't have that many coins");
-    return new Answer(false, "You don't have that many coins");
-  } else {
-    let item;
-    do {
-      item = Math.floor(Math.random() * (114 - 1)) + 1;
-    } while (config.nonMonoV3.indexOf(item) != -1);
-    client.item_get(guildConf, playerID, item);
-    //message.channel.send(`You win ${itemsV3[item].name}\n${itemsV3[item].desc}`);
-    player.coins = player.coins - config.monoPrice;
-    guildConf.players[playerID] = player;
-    const item_name = `${itemsV3[item].name}`;
-    const item_desc = `${itemsV3[item].desc}`;
-    const msg = "You win " + item_name+ "\n" + item_desc;
-    return new Answer(true, msg);
-    //guildConfigs.set(message.guild.id, guildConf);
-  }
+client.mono = (playerID) => { // Items, DB
+  return new Promise(function(resolve, reject) {
+    db.takeMoney(playerID,config.monoPrice)
+    .then(res => {
+      let item;
+      do {
+        item = Math.floor(Math.random() * (114 - 1)) + 1;
+      } while (config.nonMonoV3.indexOf(item) != -1);
+      return db.giveItem(playerID, item, 1, item)
+      })
+    .then(res => {
+      /*
+      console.log("Success?");
+      console.log("mono:" + res);
+      console.log(res[1]);
+      */
+      resolve(`You win ${itemsV3[res[1]].name}\n${itemsV3[res[1]].desc}`)
+      })
+    .catch(err => {
+      reject(err);
+      });
+  });
 }
 
-client.rps = (guildConf, playerID, bet, sign) => {
-  const player = guildConf.players[playerID];
-  if (!player) {
-    message.channel.send("Don't have this player");
+client.rps = (playerID, bet, sign) => { // DB
+  return new Promise(function(resolve, reject) {
+    db.takeMoney(playerID, bet)
+      .then(() => {
 
-  }
-  if ((isNaN(bet)) || (bet < 0)) {
-    return new Answer(false, "Wrong bet");
-  };
-  bet = Math.floor(bet);
-  if (bet > player.coins) {
-    //message.channel.send("You don't have that many coins");
-    return new Answer(false, "You don't have that many coins");
-    return;
-  }
-  let pl;
-  switch (sign) {
-    case "Rock":
-    case "rock":
-    case "R":
-    case "r":
-      pl = 2;
-      break;
-    case "Paper":
-    case "paper":
-    case "P":
-    case "p":
-      pl = 1;
-      break;
-    case "Scissors":
-    case "scissors":
-    case "S":
-    case "s":
-      pl = 0;
-      break;
-    default:
-      //message.reply("Wrong sign");
-      return new Answer(false, "Wrong sign");
-  }
-  const comp = Math.floor(Math.random() * 3);
-  const res = rps_table[pl][comp];
-  let msg;
-  switch (res) {
-    case 1:
-      msg = "You won!";
-      break;
-    case 0:
-      msg = "Tie!";
-      break;
-    case -1:
-      msg = "You lose!";
-      break;
-  }
-  let mult = 1;
-  if ((player.items.hasOwnProperty("96")) && (res == 1)) {
-    mult = mult * 1.2;
-  }
-  player.coins = Math.floor(player.coins + res * bet * mult);
-  guildConf.players[playerID] = player;
-  return new Answer(true, msg);
-};
-
-client.shop = (guildConf, playerID, itemID, op) => {
-  const player = guildConf.players[playerID];
-  switch (op) {
-    case "buy":
-      if (shopV3.hasOwnProperty(itemID)) {
-        if (shopV3[itemID] > player.coins) {
-          return new Answer(false, "You don't have enough moeny for this item");
-        } else {
-          client.item_get(guildConf, playerID, itemID, 1);
-          player.coins = player.coins - shopV3[itemID];
-          guildConf.players[playerID] = player;
-          //guildConfigs.set(message.guild.id, guildConf);
-          //message.channel.send(`You bought ${itemsV3[item].name}`);
-          return new Answer(true, `You bought ${itemsV3[itemID].name}`);
-        }
-      } else {
-        return new Answer(false, "Sorry! We don't have this item in the shop.");
-      }
-      break;
-    case "sell":
-      //return new Answer(false, "We don't have this functionality yet");
-      if (client.isNormal(itemID) || (config.special_items.indexOf(parseInt(itemID)) != -1) || (config.added_items.indexOf(parseInt(itemID)) != -1) ) {
-        if (client.item_take(guildConf,playerID, itemID, 1) == 0) {
-          client.giveMoney(guildConf, playerID, sellV3[itemID]);
-          //message.channel.send(`*${itemsV3[item].name}* was broken`);
-          //const item_name = `*${itemsV3[itemID].name}*`
-          const msg = ` sells *${itemsV3[itemID].name}*`;
-          return new Answer(true, msg);
-        } else {
-          //message.channel.send(`You don't have this item.`);
-          return new Answer(false, "You don't have this item.");
+        let pl;
+        switch (sign) {
+          case "Rock":
+          case "rock":
+          case "R":
+          case "r":
+            pl = 2;
+            break;
+          case "Paper":
+          case "paper":
+          case "P":
+          case "p":
+            pl = 1;
+            break;
+          case "Scissors":
+          case "scissors":
+          case "S":
+          case "s":
+            pl = 0;
+            break;
+          default:
+            //message.reply("Wrong sign");
+            reject(new ParamError("Wrong sign"));
         };
-      } else {
-        //message.channel.send("Something wrong with number");
-        return new Answer(false, "Something wrong with number");
-      }
-      break;
-    default:
-      return new Answer(false, "Something is wrong here");
-  }
+        const comp = Math.floor(Math.random() * 3);
+        const res = rps_table[pl][comp];
+        let msg;
+        switch (res) {
+          case 1:
+            msg = "You won!";
+            break;
+          case 0:
+            msg = "Tie!";
+            break;
+          case -1:
+            msg = "You lose!";
+            break;
+        }
+        let mult = 1;
+        /*
+        db.getPlayer(playerID)
+        .then(player => {
+          if (player.items.hasOwnProperty("96") && (res == 1)) {
+            mult = mult * 1.2;
+          };
+          console.log("mult block");
+          })
+        .catch(err => {
+          reject(err);
+          });
+        */
+        return db.giveMoney(playerID, Math.floor((res+1) * bet * mult), msg);
+      })
+      .then(res => {
+        resolve(res[1]);
+      })
+      .catch(err => {
+        reject(err);
+      })
+    }
+  )}
+
+
+client.shop = (playerID, itemID, op) => { // Items, DB, Shop
+  return new Promise(function(resolve, reject) {
+    switch (op) {
+      case "buy":
+        db.getPlayer(playerID)
+        .then(player => {
+          if (shopV3.buy.hasOwnProperty(itemID)) {
+            return db.takeMoney(playerID,shopV3.buy[itemID])
+          } else {
+            reject(new ParamError("Shop doesn't sell such item"));
+          }
+          })
+        .then(() => {
+          return db.giveItem(playerID,itemID,1)
+        })
+        .then(() => {
+          resolve(`You bought ${itemsV3[itemID].name}`);
+        })
+        .catch(err => {
+          reject(err);
+          });
+        break;
+      case "sell":
+        Promise.all([db.getPlayer(playerID), ItemCheck(itemID)])
+        .then(res => {
+          return db.takeItem(playerID, itemID, 1)
+          })
+        .then(() => {
+          return db.giveMoney(playerID, shopV3.sell[itemID])
+        })
+        .then(() => {
+          resolve(`You sold ${itemsV3[itemID].name}`);
+        })
+        .catch(err => {
+          reject(err)
+          });
+        break;
+      default:
+        reject(new ParamError("Something is wrong here"));
+    }
+  });
 }
 //------------------------
 
 //Talking operations
 
-client.shout = (message, type, name, text) => {
-  const author = message.member.nickname || message.author.username;
+client.shout = (author, avatar, type, name, text) => { return new Promise(function(resolve, reject) {
   let title;
   let color;
   switch (type) {
@@ -433,7 +298,7 @@ client.shout = (message, type, name, text) => {
       "name": author
     },
     "thumbnail": {
-        "url": message.author.avatarURL
+        "url": avatar
     },
     "color": color,
     "fields": [
@@ -443,24 +308,8 @@ client.shout = (message, type, name, text) => {
       }
     ]
   };
-  message.channel.send({embed});
-};
+  resolve(embed);
+}) };
 
-client.say = (message, channel, text) => {
-  if (!text) {
-    text = "I forgot what I wanted to say."
-  }
-  message.guild.channels.get(channel).send(text);
-};
-
-client.log = (guildConf, message, channel, text) => {
-  if (message.guild.id == config.guildV3) {
-  if (guildConf.log && (config.summit_channels.indexOf(channel) != -1)) {
-    message.guild.channels.get(guildConf.log).send(`**${message.author.username}** sent a message in **${message.guild.channels.get(channel).name}**:\n\`\`\`${text}\`\`\``);
-  } else {
-    message.guild.channels.get(config.summit_log).send(`**${message.author.username}** sent a message in **${message.guild.channels.get(channel).name}**:\n\`\`\`${text}\`\`\``);
-  }
-  }
-};
 
 module.exports = client;

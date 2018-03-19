@@ -1,17 +1,15 @@
-exports.run = (client, guildConf, message, args) => {
+var ParseError = require('../error').ParseError;
+
+exports.run = (client, message, args) => {
   const playerID = message.author.id;
   const bet = args[0]; const sign = args[1];
-  if ((isNaN(bet)) || (bet < 0)) {
-    message.reply("Wrong bet");
-    return;
-  };
-  const res = client.funcs.rps(guildConf, playerID, bet, sign);
-  if (res.res) {
-    message.channel.send(res.msg);
-  } else {
-    message.reply(res.msg)
-  }
-  client.guildConfigs.set(message.guild.id, guildConf);
+  client.funcs.rps(playerID, bet, sign)
+  .then(res => {
+    message.channel.send(res)
+    })
+  .catch(err => {
+    message.reply(ParseError(err) + "\nUsage of command:\n" + this.help.example);
+    });
 };
 
 exports.config = {

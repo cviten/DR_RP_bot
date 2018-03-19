@@ -1,8 +1,0 @@
-{
-  "Everyone": 0,
-  "Viewer": 1,
-  "Ghost": 2,
-  "Student": 3,
-  "Mod": 4,
-  "Debug": 5
-}

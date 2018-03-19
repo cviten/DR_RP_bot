@@ -1,5 +1,14 @@
-exports.run = (client, guildConf, message, args) => {
-  message.channel.send(`You have ${guildConf.players[message.author.id].coins} Monocoins`);
+const db = require('../db');
+var ParseError = require('../error').ParseError;
+
+exports.run = (client, message, args) => {
+  db.getPlayer(message.author.id)
+  .then(res => {
+    message.channel.send(`You have ${res.coins} Monocoins`);
+    })
+  .catch(err => {
+    message.reply(ParseError(err) + "\nUsage of command:\n" + this.help.example);
+    });
 };
 
 exports.config = {

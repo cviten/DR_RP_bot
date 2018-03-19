@@ -1,16 +1,15 @@
-exports.run = (client, guildConf, message, args) => {
+var ParseError = require('../error').ParseError;
+
+exports.run = (client, message, args) => {
   //console.log(args[1]);
-  if ( !( isNaN(args[0]) ) )  {
-    const res = client.funcs.item_desc(args[0])
-    if (res.res) {
-      const embed = res.msg
-      message.channel.send({embed});
-    } else {
-      message.reply(res.msg);
-    }
-  } else {
-    message.reply("Something wrong with number")
-  }
+  client.funcs.item_desc(args[0])
+  .then(embed => {
+    message.channel.send({embed})
+    })
+  .catch(err => {
+    message.reply(ParseError(err) + "\nUsage of command:\n" + this.help.example);
+    });
+
 };
 
 exports.config = {
@@ -21,5 +20,5 @@ exports.help = {
   name: "Description",
   cmd: "desc",
   desc: "Gives you description of the item",
-  example : "Shows description of the item with ID 63:\n`m!desc`"
+  example : "Shows description of the item with ID 63:\n`m!desc 63`"
 };

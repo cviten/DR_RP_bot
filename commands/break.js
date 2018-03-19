@@ -1,13 +1,15 @@
-exports.run = (client, guildConf, message, args) => {
+var ParseError = require('../error').ParseError;
+
+exports.run = (client, message, args) => {
   const item = args[0];
-  console.log(item);
-  const res = client.funcs.item_break(guildConf, message.author.id, item)
-  if (res.res) {
-    message.channel.send(res.msg);
-  } else {
-    message.reply(res.msg);
-  }
-};
+  client.funcs.item_break(message.author.id, item)
+  .then(res => {
+    message.channel.send(`${message.author.nickname || message.author.username} broke item ${item}`)
+    })
+  .catch(err => {
+    message.reply(ParseError(err) + "\nUsage of command:\n" + this.help.example);
+    });
+  };
 
 exports.config = {
   type: "Student"

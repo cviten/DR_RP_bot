@@ -1,12 +1,13 @@
-exports.run = (client, guildConf, message, args) => {
+exports.run = (client, message, args) => {
   const item = args[0];
   const name = message.member.nickname || message.author.username;
-  const res = client.funcs.tem_use(guildConf, message.author.id, item)
-  if (res.res) {
-    message.channel.send("**"+name+"**" + res.msg);
-  } else {
-    message.reply(res.msg);
-  }
+  client.funcs.item_use(message.author.id, item)
+  .then(res => {
+    message.channel.send("**"+name+"** used " + res);
+    })
+  .catch(err => {
+    message.reply(ParseError(err) + "\nUsage of command:\n" + this.help.example);
+  });
 };
 
 exports.config = {

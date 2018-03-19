@@ -1,14 +1,29 @@
-exports.run = (client, guildConf, message, args) => {
+var ParseError = require('../error').ParseError;
+
+exports.run = (client, message, args) => {
   const person = message.mentions.members.first();
+  const author = message.member.nickname || message.author.username;
   message.delete();
   if (person) {
     const name = message.mentions.members.first().nickname || message.mentions.members.first().user.username;
     const text = args.slice(1).join(" ");
-    client.funcs.shout(message, "obj", name, text);
+    client.funcs.shout(author, avatar, "obj", name, text)
+    .then(res => {
+      message.channel.send({embed});
+      })
+    .catch(err => {
+      message.reply(ParseError(err));
+      });;
   } else {
     const name = "Everyone";
     const text = args.slice(0).join(" ");
-    client.funcs.shout(message, "obj", name, text);
+    client.funcs.shout(author, avatar, "obj", name, text)
+    .then(res => {
+      message.channel.send({embed});
+      })
+    .catch(err => {
+      message.reply(ParseError(err));
+      });;
   }
 };
 

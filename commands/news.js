@@ -1,9 +1,16 @@
-exports.run = (client, guildConf, message, args) => {
+exports.run = (client, message, args) => {
   let text = args.slice(0).join(" ");
   message.delete();
-  let channel = guildConf.news;
-  client.funcs.say(message, channel, text);
-  client.funcs.log(guildConf, message, channel, text);
+  let channel = "375631496704163851";
+  //client.funcs.say(channel, text);
+  if (!text) {
+    text = "I forgot what I wanted to say."
+  }
+  message.guild.channels.get(channel).send(text).catch(err => {
+    console.log(`${message.author.username} said:\n${text}\n${err}`);
+    message.channel.send("Something wrong")
+  })
+  //client.funcs.log(guildConf, message, channel, text);
 };
 
 exports.config = {

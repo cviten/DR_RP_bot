@@ -1,12 +1,14 @@
-exports.run = (client, guildConf, message, args) => {
-  const playerID = message.author.id;
-  const res = client.funcs.mono(guildConf, playerID);
-  if (res.res) {
-    message.channel.send(res.msg);
-  } else {
-    message.reply(res.msg)
-  }
-  client.guildConfigs.set(message.guild.id, guildConf);
+var ParseError = require('../error').ParseError;
+
+exports.run = (client, message, args) => {
+  client.funcs.mono(message.author.id)
+  .then(res => {
+    message.channel.send(res)
+    })
+  .catch(err => {
+    message.reply(ParseError(err) + "\nUsage of command:\n" + this.help.example);
+    });
+  //const playerID = message.author.id;
 };
 
 exports.config = {

@@ -1,0 +1,878 @@
+{
+  "1":{
+    "name": "Oolong Tea",
+    "desc": "An oxidized Chinese tea. Different flavors and fragrances can be bought out depending on the degree of oxidation.",
+    "like": "Maki, Shuichi",
+    "love": "None"
+  },
+  "2":{
+    "name": "Boba Tea",
+    "desc": "A popular drink with a bunch of tapioca balls at the bottom. The chewy tapioca balls are made from the root of the cassava plant.",
+    "like": "Angie, Kaede, Kokichi, Maki, Miu, Rantaro, Tenko",
+    "love": "None"
+  },
+  "3":{
+    "name": "Ginger Tea",
+    "desc": "Hot water with grated ginger in it. It warms the body and prevents colds. It tastes delicious with honey mixed in.",
+    "like": "Himiko, Kirumi, Ryoma, Shuichi, Tenko, Tsumugi",
+    "love": "None"
+  },
+  "4":{
+    "name": "Cleopatra's Pearl Cocktail",
+    "desc": "A drink based on the story of Cleopatra dissolving one of her pearl earrings in a cup of vinegar. Said to be good for beauty.",
+    "like": "Angie, Himiko, Kaede, Kirumi, Korekiyo, Maki, Miu, Rantaro, Tenko, Tsumugi",
+    "love": "None"
+  },
+  "5":{
+    "name": "Non-Alcoholic Drink of Immortality",
+    "desc": "A non-alcoholic drink based on a legendary alcoholic beverage said to make the drinker immortal. It neither grants immorality, nor does it taste good.",
+    "like": "Angie, Kokichi, Miu, Rantaro, Ryoma, Tsumugi",
+    "love": "None"
+  },
+  "6":{
+    "name": "Ketchup",
+    "desc": "An exclusive writing instrument for a maid to use to write messages on omelettes. Considered a normal condiment by some people.",
+    "like": "Kirumi",
+    "love": "None"
+  },
+  "7":{
+    "name": "Sugar",
+    "desc": "A basic seasoning that's primarily made up of sucrose. Be careful not to consume too much of it.",
+    "like": "Himiko, Gonta, Kirumi",
+    "love": "None"
+  },
+  "8":{
+    "name": "Oliver Oil",
+    "desc": "A vegetable oil created from olives. If you wielded it correctly, it will make you look cool as you cook.",
+    "like": "Kirumi, Rantaro",
+    "love": "None"
+  },
+  "9":{
+    "name": "Astro Cake",
+    "desc": "A freeze-dried slice of cake sold to the public as space food. It's both healthy and vegetarian-friendly.",
+    "like": "All but K1-B0",
+    "love": "None"
+  },
+  "10":{
+    "name": "Bubble Gum Bomb",
+    "desc": "A gum that makes an explosive sound when it's fully blown and popped. Weak-hearted people should not chew it.",
+    "like": "Angie, Kokichi, Miu, Tenko",
+    "love": "None"
+  },
+  "11":{
+    "name": "Maple Fudge",
+    "desc": "A British candy that's made by boiling down sugar, condensed milk, and butter, and then adding maple syrup. It's really sweet.",
+    "like": "Maki",
+    "love": "None"
+  },
+  "12":{
+    "name": "Greek Yogurt",
+    "desc": "A food that's made by straining water from plain yogurt. The thick taste is popular and used in several dishes.",
+    "like": "Angie, Gonta, Kaede, Kirumi, Rantaro, Tsumugi",
+    "love": "None"
+  },
+  "13":{
+    "name": "Bunny Apples",
+    "desc": "Apples cut into bunny shapes. Often use as bait for certain animals and insects.\n*Love*: Gonta\n*Like*: Himiko, Maki, Miu",
+    "like": "Himiko, Maki, Miu",
+    "love": "Gonta"
+  },
+  "14":{
+    "name": "Rock Hard Ice Cream",
+    "desc": "A cup of ice cream engineered to never melt. It can be carried around for a long time, even in summer. But it's so hard, ordinary spoons cant penetrate it.",
+    "like": "Angie, Gonta, Kaito, Kokichi, Miu, Tenko",
+    "love": "None"
+  },
+  "15":{
+    "name": "Sukiyaki Caramel",
+    "desc": "Sukiyaki-flavored caramels that combine the flavors of meat, soy sauce, eggs, and caramel. The flavors are all really strong and don't mix well.",
+    "like": "Kokichi, Miu",
+    "love": "None"
+  },
+  "16":{
+    "name": "Candy Cigarette",
+    "desc": "A sweet cigarette-shaped candy. It's popular among kids who want to imitate adults.",
+    "like": "Himiko",
+    "love": "Ryoma"
+  },
+  "17":{
+    "name": "Gyoza In the Shape of a Face",
+    "desc": "A dumpling that's modeled after someone you swear you've seen somewhere before. The skin is thick and it's a little tough.",
+    "like": "Angie, Kokichi, Tsumugi, Shuichi",
+    "love": "None"
+  },
+   "18":{
+    "name": "Silver Earring",
+    "desc": "A simple earring that can look good on anyone. It's causally stylish.",
+    "like": "Angie, Ryoma, Maki",
+    "love": "Rantaro"
+  },
+   "19":{
+    "name": "Crystal Bangle",
+    "desc": "A bangle made out of common crystal glass. It's sparkly and draws quite a bit of attention.",
+    "like": "Angie, Himiko, Kaede, Kirumi, Maki, Miu, Rantaro, Tsumugi",
+    "love": "None"
+  },
+   "20":{
+    "name": "Striped Necktie",
+    "desc": "A stylist tie both men and women can wear. It's convenient to have one around for special occasions.",
+    "like": "Kaede, Kirumi, Rantaro, Tsumugi",
+    "love": "Gonta"
+  },
+  "21":{
+    "name": "Bondage Boots",
+    "desc": "Enamel boots fit for a queen. They have high heels and long laces decorated with a chain. Made to be worn as shoes, but usable as art or an umbrella holder.",
+    "like": "Himiko, Korekiyo, Tsumugi",
+    "love": "Miu"
+  },
+   "22":{
+    "name": "Ultimate Academy Bracelet",
+    "desc": "A handcuff bracelet with the crest for the Ultimate Academy emblazoned on it. It is a symbol of friendship, even in the face of death and despair.",
+    "like": "Miu",
+    "love": "None"
+  },
+  "23":{
+    "name": "Workout Clothes",
+    "desc": "Easy-to-move workout clothes that wick away any sweat. With these, you can work out all day and still be comfortable.",
+    "like": "Gonta, Kaito, Maki, Ryoma, Shuichi, Tsumugi",
+    "love": "Tenko"
+  },
+  "24":{
+    "name": "Mono-Jinbei",
+    "desc": "Popular Japanese summer clothes colored black and white, like Monokuma. It's easy to move around in, and breaths well.",
+    "like": "Angie, Himiko, K1-B0, Kaito, Tenko",
+    "love": "None"
+  },
+  "25":{
+    "name": "Autumn-Colored Scarf",
+    "desc": "A chic autumn-colored scarf that can be used by men, women, and robots. It is very trendy and a fashionable accent to any outfit.",
+    "like": "K1-B0, Kirumi, Kokichi, Rantaro, Ryoma, Tsumugi",
+    "love": "None"
+  },
+  "26":{
+    "name": "Hand-Knit Sweater",
+    "desc": "A sweater that's been knitted with love in every stitch. Those who wear it can feel themselves enveloped in the power of love and will stay warm through even the coldest winter.",
+    "like": "Tenko",
+    "love": "None"
+  },
+  "27":{
+    "name": "Cheer Coat Uniform",
+    "desc": "A long coat with passionate red lining. It protects you from the cold and makes you burn with passion.",
+    "like": "Gonta, Kaito, Tsumugi",
+    "love": "None"
+  },
+  "28":{
+    "name": "Nail Brush",
+    "desc": "A brush for painting nails beautifully. With this, anyone can make their nails sparkle like magic.",
+    "like": "Angie, Kaede, Kirumi, Korekiyo, Maki, Tsumugi",
+    "love": "None"
+  },
+  "29":{
+    "name": "Wearable Blanket",
+    "desc": "A blanket that will completely defend you from the cold by closing off any gaps around you hands, neck, and feet. Moving around in it is near impossible.",
+    "like": "Himiko, Kokichi",
+    "love": "Miu"
+  },
+  "30":{
+    "name": "Beret",
+    "desc": "A size-adjustable beret. It's a pretty popular hat that lets you trendy and somewhat artistic.",
+    "like": "Kaede, Maki, Ryoma, Tsumugi",
+    "love": "Angie, Rantaro"
+  },
+  "31":{
+    "name": "Ladybug Brooch",
+    "desc": "A cute and fashionable brooch that resembles a seven-spotted ladybug. Despite how realistic it looks, it is not alive.",
+    "like": "Angie, Gonta, Himiko, Kaede, Kirumi, Kokichi, Maki, Miu, Rantaro, Ryoma, Tenko, Tsumugi",
+    "love": "None"
+  },
+  "32":{
+    "name": "Cufflinks",
+    "desc": "An accessory that is attached to the cuffs of a shirt. The black onyx design makes it look good on both men and women.",
+    "like": "Himiko, Kaede, Kiurmi, Kokichi, Korekiyo, Maki, Rantaro, Ryoma, Tenko, Tsumugi",
+    "love": "Gonta"
+  },
+  "33":{
+    "name": "Dog Tag",
+    "desc": "A dog tag used to identity soldiers. The same profile is engraved on two plates so that if the owner is killed, one is collected to report death.",
+    "like": "Kokichi, Maki, Miu, Rantaro, Tsumugi",
+    "love": "Ryoma"
+  },
+  "34":{
+    "name": "White Robot Mustache",
+    "desc": "A gentlemanly mustache that can be stuck on robots. Does not include antenna functions or earthquake powers.",
+    "like": "Kaito, Tsumugi",
+    "love": "K1-B0"
+  },
+  "35":{
+    "name": "Book of the Blackened",
+    "desc": "A book of criminal offenses that contains records of the cruelest, most atrocious murders committed by humans. Many of these cases weren't released to the public.",
+    "like": "Kokichi, Korekiyo, Tsumugi",
+    "love": "None"
+  },
+  "36":{
+    "name": "Feelings of Ham",
+    "desc": "How to raise hamsters...is not what this book is about. It's a book about raising domestic animals for meat. For those who are interested in the farming industry.",
+    "like": "Angie, Kokichi, Korekiyo, Miu",
+    "love": "None"
+  },
+  "37":{
+    "name": "Travel Journal",
+    "desc": "A thick journal packed with record of trips. However, it was actually written using vague knowledge and the rich imagination of someone looking at a world map.",
+    "like": "K1-B0, Kaede, Kokichi, Korekiyo, Maki, Rantaro, Ryoma, Tenko",
+    "love": "Shuichi"
+  },
+  "38":{
+    "name": "Dreams Come True -- Spell Book",
+    "desc": "A book that contains old magic gathered from all over the country and collected into an easy to read volume for kids. Any dangerous have been removed, so only love spells are left.",
+    "like": "Angie, Himiko, Korekiyo, Miu, Tenko",
+    "love": "None"
+  },
+  "39":{
+    "name": "Story of Tokono",
+    "desc": "A collection of stories about the customs, legends, and knowledge of civilizations from long ago. It has a high scientific value.",
+    "like": "Angie, Kaito",
+    "love": "Korekiyo, Miu"
+  },
+  "40":{
+    "name": "Spla-Teen Vogue",
+    "desc": "A teen magazine featuring many models just enjoying their summer. This magazine is meant for kids, not squids.",
+    "like": "None",
+    "love": "Kaito"
+  },
+  "41":{
+    "name": "Fun Book of Animals",
+    "desc": "An animal picture book for preschool kids. For some reason, bears are not featured in it. ",
+    "like": "Gonta, Maki, Miu",
+    "love": "None"
+  },
+  "42":{
+    "name": "Latest Machine Parts Catalogue",
+    "desc": "A comprehensive catalog that features the latest cables, screws, motors, etc. It could be considered a fashion magazine for robots.",
+    "like": "Miu",
+    "love": "K1-B0"
+  },
+  "43":{
+    "name": "Stainless Tray",
+    "desc": "A circular silver tray that shines like a mirror. It is befitting of a maid.",
+    "like": "Tsumugi, Rantaro",
+    "love": "Kirumi"
+  },
+  "44":{
+    "name": "Tennis Ball Set",
+    "desc": "A standard tennis ball four-pack set. Not only is it used for tennis, but it's also used for massage and weight loss exercises.",
+    "like": "Kaito, Kaede, Tenko, Shuichi",
+    "love": "None"
+  },
+  "45":{
+    "name": "High-End Headphones",
+    "desc": "Top-grade, high-end headphones. Use these if you truly want to hear the nuances in classical and jazz music.",
+    "like": "Himiko, K1-B0, Kaito, Kokichi, Maki, Miu, Rantaro, Ryoma, Shuichi, Tenko, Tsumugi ",
+    "love": "Kaede"
+  },
+  "46":{
+    "name": "Teddy Bear",
+    "desc": "A typical stuffed toy bear that's not black and white. If you love it enough, then it might come to life one day.",
+    "like": "Angie, Himiko, Kaede, Maki, Ryoma, Shuichi",
+    "love": "None"
+  },
+  "47":{
+    "name": "Milk Puzzle",
+    "desc": "A plain puzzle with one side as white as milk. It's said to be good for concentration training and is used for astronaut selection exams.",
+    "like": "Kokichi",
+    "love": "Kaito"
+  },
+  "48":{
+    "name": "Illusion Rod",
+    "desc": "A miracle rod that can show a happy illusion when it's spun in circles in front of someone's eyes.",
+    "like": "Angie, Shuichi, Tenko, Tsumugi",
+    "love": "Himiko"
+  },
+  "49":{
+    "name": "Hand Mirror",
+    "desc": "A pocket-sized mirror that is incredibly useful for checking your appearance.",
+    "like": "Angie, Kaede, Kirumi, Korekiyo, Maki, Tsumugi",
+    "love": "None"
+  },
+  "50":{
+    "name": "Prop Carrying Case",
+    "desc": "A case in high demand by cosplayers for its usability. Not only is it useful for conventions, but it's great for trips too.",
+    "like": "Rantaro",
+    "love": "Tsumugi"
+  },
+  "51":{
+    "name": "Japanese Doll Wig",
+    "desc": "A glamorous black wig that has hair like that of a Japanese doll. Even if you cut it, it grows back instantly.",
+    "like": "Korekiyo",
+    "love": "Tsumugi"
+  },
+  "52":{
+    "name": "Photoshop Software",
+    "desc": "A photo editing software that lets you retouch photos. Turn a plain, freckled face into something flashy!",
+    "like": "Miu",
+    "love": "Tsumugi"
+  },
+  "53":{
+    "name": "Sewing Kit",
+    "desc": "A basic sewing kit that has a needle and several colors of thread. With this, you will always be prepared in case a button comes off.",
+    "like": "Korekiyo",
+    "love": "Kirumi, Tsumugi"
+  },
+  "54":{
+    "name": "Flame Thunder",
+    "desc": "A broom that lets mages fly at high speeds when they sit on it. It's a little bent, but it can also be used for cleaning.",
+    "like": "Kokichi, Tsumugi",
+    "love": "Himiko, Kirumi"
+  },
+  "55":{
+    "name": "Tattered Music Score",
+    "desc": "A tattered handwritten music score. Rumor has it that it's unpublished music from a certain famous composer.",
+    "like": "Kokichi, Korekiyo, Rantaro",
+    "love": "Kaede"
+  },
+  "56":{
+    "name": "Indigo Hakama",
+    "desc": "Traditional Japanese clothing. This particular kind kind is made of high-quality cotton and used for martial arts. Wear it when it's time to spar.",
+    "like": "K1-B0, Kaito, Shuichi, Tsumugi",
+    "love": "Tenko"
+  },
+   "57":{
+    "name": "Fashionable Glasses",
+    "desc": "A fashionable accessory that appears to be a pair of glasses, but does not actually correct its wearer's vision.",
+    "like": "Kokichi, Tsumugi",
+    "love": "None"
+  },
+  "58":{
+    "name": "Gold Origami",
+    "desc": "An origami pack that has 24 sheets of gold origami paper. With this, you can create gorgeous origami.",
+    "like": "Angie, Himiko",
+    "love": "None"
+  },
+  "59":{
+    "name": "Plastic Moon Buggy Model",
+    "desc": "A plastic model of an actual buggy used by astronauts on the moon. It looks plain, but it's actually filled with a burning passion.",
+    "like": "Kokichi, Miu, Rantaro, Shuichi",
+    "love": "Kaito"
+  },
+  "60":{
+    "name": "I'm a Picture Book Artist!",
+    "desc": "An electronic device that's equipped with an AI to produce a new picture book every time it's turned on. Great for kids who love hearing bed-time stories.",
+    "like": "K1-B0, Maki, Miu",
+    "love": "None"
+  },
+  "61":{
+    "name": "Hand Grips",
+    "desc": "A device for grip training. The strength of a punch is determined by grip strength, weight, and speed combined.",
+    "like": "Kaede, Kaito, Maki, Ryoma, Tenko",
+    "love": "None"
+  },
+  "62":{
+    "name": "Commemorative Medal Set",
+    "desc": "A medal set Monokuma made of himself and the Monokubs. You can feel the care he put into making it.",
+    "like": "Kaito, Miu, Rantaro, Ryoma, Shuichi",
+    "love": "Kokichi"
+  },
+  "63":{
+    "name": "Metronome",
+    "desc": "A musical device that is used to match the tempo when playing an instrument. A basic pendulum type.",
+    "like": "None",
+    "love": "Kaede"
+  },
+  "64":{
+    "name": "Sketchbook",
+    "desc": "An art book for sketches. It's pocket-sized so it's convenient to carry around.",
+    "like": "Gonta, Korekiyo, Tsumugi",
+    "love": "Angie"
+  },
+  "65":{
+    "name": "Art Manikin",
+    "desc": "A model doll that has the same joints as humans. It's pretty versatile and can stay balanced in positions humans can't maintain.",
+    "like": "None",
+    "love": "Angie"
+  },
+  "66":{
+    "name": "Bird Food",
+    "desc": "A carefully selected collection of fresh seeds for domestic pigeons. Wild pigeons can't appreciate the increased quality, so it would be a waste to give them these.",
+    "like": "None",
+    "love": "Himiko"
+  },
+  "67":{
+    "name": "Proxilingual Device",
+    "desc": "A tool that can translate any language, even animal sounds. It can pick up a dog's bark and eloquently describe the emotions in it with an electronic bark.",
+    "like": "Angie, Himiko, Kaito, Kokichi, Korekiyo, Miu, Rantaro, Shuichi",
+    "love": "None"
+  },
+  "68":{
+    "name": "Gourd Insect Trap",
+    "desc": "An opaque, gourd-shaped insect keeper. Used for keeping bugs to listen to the noises they make.",
+    "like": "None",
+    "love": "Gonta"
+  },
+  "69":{
+    "name": "Potted Banyan Tree",
+    "desc": "A potted banyan tree with spirits living inside it. It is said to be good luck. It grows aerial roots from the middle of its trunk.",
+    "like": "All but Miu",
+    "love": "Kaito"
+  },
+  "70":{
+    "name": "Pocket Tissue",
+    "desc": "A normal package of tissues. It's best to carry it alongside a handkerchief.",
+    "like": "None",
+    "love": "None"
+  },
+  "71":{
+    "name": "Dancing Haniwa",
+    "desc": "A ceramic figure from the Japanese Kofun period. It is said to resemble a person dancing very intensely.",
+    "like": "Angie, Kokichi, Tenko",
+    "love": "Korekiyo"
+  },
+  "72":{
+    "name": "Work Chair Of Doom",
+    "desc": "The ultimate work station with a comfy chair and so much technology that you will never want to get up. Those who sit here will be in danger of becoming obese.",
+    "like": "Himiko, Kokichi, Tsumugi",
+    "love": "Miu"
+  },
+  "73":{
+    "name": "3-Hit KO Sandbag",
+    "desc": "Regardless of whether it's hit by a kick from a sickly child or a punch from a superhuman adult, this punching bag will always break on the third hit.",
+    "like": "Kokichi, Maki",
+    "love": "Tenko"
+  },
+  "74":{
+    "name": "Sports Towel",
+    "desc": "A towel that's perfect for hanging around your neck to wipe off sweat. It's the color of the bright, blue sky on a youthful summer day.",
+    "like": "Kaito, Maki, Ryoma, Tenko",
+    "love": "None"
+  },
+  "75":{
+    "name": "Steel Glasses Case",
+    "desc": "A study glasses case that won't break, even if it's stomped on by an Exisal. No matter what abuse it takes, the glasses inside will be kept safe.",
+    "like": "None",
+    "love": "Gonta, Tsumugi"
+  },
+  "76":{
+    "name": "Robot Oil",
+    "desc": "An oil that's necessary to have when making robots. It has started to separate, so the top half is diluted. Please be sure to shake before use.",
+    "like": "Miu",
+    "love": "K1-B0"
+  },
+  "77":{
+    "name": "Clock-Shaped Gaming Console",
+    "desc": "A pocket watch-shaped game console with monochrome LCD and several buttons. Play a game called 'Factory' and mash buttons to create more bears!",
+    "like": "Himiko, K1-B0, Kaede, Kaito, Kokichi, Miu, Rantaro, Ryoma, Shuichi, Tenko, Tsumugi",
+    "love": "None"
+  },
+  "78":{
+    "name": "Everywhere Parasol",
+    "desc": "A parasol with a stand so it can be used anywhere. Set it up poolside to feel fancy!",
+    "like": "Kaede, Rantaro, Tenko",
+    "love": "None"
+  },
+  "79":{
+    "name": "Three-Layered Lunch Box",
+    "desc": "A family-sized lunch box that can fit a variety of side dishes. Perfect for a picnic.",
+    "like": "Kirumi, Tenko",
+    "love": "None"
+  },
+  "80":{
+    "name": "Aluminum Water Bottle",
+    "desc": "A round, retro water bottle. Having it slung over your shoulder makes you want to go on an adventure.",
+    "like": "Gonta, Kaito, Rantaro, Tenko",
+    "love": "None"
+  },
+  "81":{
+    "name": "Jelly Balls",
+    "desc": "Squishy, colorful beads that swell to marble size when wet. Good for decoration and gardening. Lining up 4 of the same color won't make them vanish.",
+    "like": "Angie, Himiko, K1-B0, Kaede, Kirumi, Maki, Tenko, Tsumugi",
+    "love": "None"
+  },
+  "82":{
+    "name": "Upbeat Humidifier",
+    "desc": "It humidifies your room based on the amount of tears you have shed. Great for gloomy people, but to cheerful people, it's just a paperweight.",
+    "like": "Kaede, Miu, Shuichi, Tenko",
+    "love": "None"
+  },
+  "83":{
+    "name": "Earnest Compass",
+    "desc": "A compass that ignores the North Pole and South Pole, and instead points to the owner's loved ones. A must-have for stalkers.",
+    "like": "Korekiyo, Miu, Rantaro, Tenko",
+    "love": "None"
+  },
+  "84":{
+    "name": "Semazen Doll",
+    "desc": "A ceramic doll that spins like a Whirling Dervish. It's a very popular Turkish souvenir.",
+    "like": "Angie, Gonta, Himiko, K1-B0, Korekiyo, Rantaro, Tsumugi",
+    "love": "None"
+  },
+  "85":{
+    "name": "Weathercock of Barcelous",
+    "desc": "A weathercock that imitates the Portuguese 'Rooster of Barcelous,' A symbol of the truth, this is a popular souvenir from Portugal.",
+    "like": "K1-B0, Kiurmi, Kokichi, Korekiyo, Rantaro, Shuichi, Tsumugi",
+    "love": "None"
+  },
+  "86":{
+    "name": "Pillow of Admiration",
+    "desc": "A pillow that helps you sleep well and gives you wonderful dreams. However, the dreams will show an entire lifetime making you feel intensely empty after you wake up.",
+    "like": "Angie, Kaito, Kirumi, Kokichi, Korekiyo, Miu",
+    "love": "None"
+  },
+  "87":{
+    "name": "46 Moves of the Killing Game",
+    "desc": "A card game with Japanese characters relating to killing games. Some cards are, 'A metal bat to kill demons', 'Blacked are soaked in blood', and 'Certain evidence over arguments'.",
+    "like": "Kokichi, Korekiyo, Rantaro",
+    "love": "None"
+  },
+  "88":{
+    "name": "Monkey's Paw",
+    "desc": "The mummified hand of a monkey said to grant three wishes. However, none of the wishes it grants have happy endings.",
+    "like": "Angie, Kokichi",
+    "love": "Korekiyo"
+  },
+  "89":{
+    "name": "Art Piece of Spring",
+    "desc": "An ornament that looks like a urinal. The more you look at it, the more you start to question what art *really* is.",
+    "like": "Miu",
+    "love": "Angie"
+  },
+  "90":{
+    "name": "Electric Tempest",
+    "desc": "A cool high-powered water gun. The water shoots over 10 yards and it can be fired continuously for a whole minute. Fun for kids and adults!",
+    "like": "Kaito, Miu, Tenko",
+    "love": "Kokichi"
+  },
+  "91":{
+    "name": "Space Egg",
+    "desc": "Object made out of borosilicate glass. Depending on the angle, it changes form. The mysterious pattern is what makes it popular.",
+    "like": "Angie, Gonta, Himiko, K1-B0, Kaede, Kaito, Kirumi, Rantaro, Tenko, Tsumugi",
+    "love": "Maki"
+  },
+  "92":{
+    "name": "Death Flag",
+    "desc": "The blackened might be one of us, so I refuse to stay with you guys! I'm gonna go hide in my room!",
+    "like": "Kokichi",
+    "love": "None"
+  },
+  "93":{
+    "name": "Survival Flag",
+    "desc": "The chance of this succeeding is only 5%. No one has ever made it out alive before...but this is my last chance to survive.",
+    "like": "Gonta, Kokichi",
+    "love": "None"
+  },
+  "94":{
+    "name": "Helping Yacchi",
+    "desc": "A robot mascot that looks like a killer whale. It can sense when it's owner is distressed, and offers a research solution.",
+    "like": "Gonta, Himiko, K1-B0, Kaede, Kirumi, Miu, Rantaro, Tsumugi",
+    "love": "None"
+  },
+  "95":{
+    "name": "Home Planet",
+    "desc": "A mini planetarium machine that can project the cosmos onto your bedroom walls when it's time for bed. Comes with a narration by a popular voice actor.",
+    "like": "All but Korekiyo",
+    "love": "Kaito, Maki"
+  },
+  "96":{
+    "name": "Super Lucky Button",
+    "desc": "A shiny button that makes its owner feel like their luck will turn around. It may or may not pull in a powerful wave of luck. Has special effect in casino...",
+    "like": "N/A",
+    "love": "N/A"
+  },
+  "97":{
+    "name": "Sparkly Sheet",
+    "desc": "A cleaning sheet that gets rid of any mess in the kitchen sink or dirt on the faucet. Can also be used to clean robots.",
+    "like": "Kaede, Miu, Shuichi",
+    "love": "K1-B0, Kirumi"
+  },
+  "98":{
+    "name": "Hammock",
+    "desc": "Bedding created by hanging a net between two poles or trees. Lounging in one of these is something everyone has dreamed of at least once.",
+    "like": "Angie, Kaito, Rantaro, Tenko",
+    "love": "Kokichi, Ryoma"
+  },
+  "99":{
+    "name": "Cleansing Air Freshener",
+    "desc": "A spray air freshener. It has holy water mixed in, and is said to repel ghosts and paranormal entities.",
+    "like": "Kaito, Kirumi, Kokichi, Tsumugi ",
+    "love": "None"
+  },
+  "100":{
+    "name": "Flower for Floromancy",
+    "desc": "'Loves me, loves me not, loves me...' An artificial flower used for flower fortune-telling. It has an odd number of petals to soothe the pain of unrequited love.",
+    "like": "Tenko",
+    "love": "None"
+  },
+  "101":{
+    "name": "Marigold Seeds",
+    "desc": "Marigold seeds that bloom into colorful flowers. By way, marigolds symbolize 'despair.'",
+    "like": "Angie, Gonta, Kaede, Kaito, Kiurmi, Rantaro, Tsumugi",
+    "love": "None"
+  },
+  "102":{
+    "name": "Rock-Paper-Scissors Cards",
+    "desc": "A set of cards containing four rocks, four papers, and four scissors. If you bet your life on this game, it can be a thrilling psychological battle.",
+    "like": "Kaito, Kokichi, Rantaro, Tsumugi",
+    "love": "None"
+  },
+  "103":{
+    "name": "Perfect Laser Gun",
+    "desc": "A replica of a laser gun used by upstanding citizens to punish rebellious or unhappy people. When carrying it around, be sure to watch your coefficient.",
+    "like": "Angie, K1-B0, Kokichi, Miu, Tsumugi",
+    "love": "None"
+  },
+  "104":{
+    "name": "Someone's Student ID",
+    "desc": "A replica of a student ID from some academy. There are many different designs of ID as there are talented students.",
+    "like": "K1-B0, Rantaro, Tsumugi",
+    "love": "None"
+  },
+  "105":{
+    "name": "Bear Ears",
+    "desc": "A headband with Monokuma ears. When worn, it picks up your brainwaves and the ears wiggle according to your emotions.",
+    "like": "Gonta, Himiko, Kaede, Miu, Ryoma, Tenko",
+    "love": "None"
+  },
+  "106":{
+    "name": "Dangan Werewolf",
+    "desc": "A party game of hope and despair. Draw cards and become the characters to start deducing and debating! Now on sale!",
+    "like": "K1-B0, Kaito, Kokichi, Korekiyo, Rantaro, Ryoma, Tsumugi",
+    "love": "None"
+  },
+  "107":{
+    "name": "Tentacle Machine",
+    "desc": "An extremely handy reacher grabber. Once you use it, you can't live without it.",
+    "like": "Kaito, Kokichi",
+    "love": "Angie, Miu"
+  },
+  "108":{
+    "name": "Rice Toy Blocks",
+    "desc": "Toy blocks made out of rice, so they're safe for babies to put in their mouths. But they'll go bad if they aren't eaten right away.",
+    "like": "Maki",
+    "love": "None"
+  },
+  "109":{
+    "name": "Cosmic Blanket",
+    "desc": "Aluminum film that makes excellent insulation. It warms your body when you wrap it around yourself, making it handy for outdoor actives.",
+    "like": "Himiko, Kaito, Korekiyo, Rantaro",
+    "love": "None"
+  },
+  "110":{
+    "name": "Fully-Automated Shaved Ice Machine",
+    "desc": "A shaved ice machine that automatically crushes up ice and pours strawberry syrup on top.",
+    "like": "Angie, Gonta, Himiko, Kaito, Kirumi, Kokichi, Maki, Miu, Tenko",
+    "love": "None"
+  },
+  "111":{
+    "name": "Gun of Passion",
+    "desc": "A model of an imaginary weapon. It's powerful, And with great lust comes great responsibility... Now gender-neutral!",
+    "like": "None",
+    "love": "Shuichi"
+  },
+  "112":{
+    "name": "Pure-White Practice Sword",
+    "desc": "An ornamental katakana that contains a divine power capable of taking out ordinary people with a single slash.",
+    "like": "Tsumugi",
+    "love": "None"
+  },
+  "113":{
+    "name": "Dark Belt",
+    "desc": "A black-ish belt worn with karate clothes. It can only be worn by those with justice in their hearts.",
+    "like": "Gonta, K1-B0, Kaito, Kokichi, Tenko",
+    "love": "None"
+  },
+  "114":{
+    "name": "Dark Belt",
+    "desc": "A black-ish belt worn with karate clothes. It can only be worn by those with justice in their hearts.",
+    "like": "Gonta, K1-B0, Kaito, Kokichi, Tenko",
+    "love": "None"
+  },
+  "115":{
+    "name": "Dark Belt",
+    "desc": "A black-ish belt worn with karate clothes. It can only be worn by those with justice in their hearts.",
+    "like": "Gonta, K1-B0, Kaito, Kokichi, Tenko",
+    "love": "None"
+  },
+  "116":{
+    "name": "Dark Belt",
+    "desc": "A black-ish belt worn with karate clothes. It can only be worn by those with justice in their hearts.",
+    "like": "Gonta, K1-B0, Kaito, Kokichi, Tenko",
+    "love": "None"
+  },
+  "117":{
+    "name": "Dark Belt",
+    "desc": "A black-ish belt worn with karate clothes. It can only be worn by those with justice in their hearts.",
+    "like": "Gonta, K1-B0, Kaito, Kokichi, Tenko",
+    "love": "None"
+  },
+  "118":{
+    "name": "Dark Belt",
+    "desc": "A black-ish belt worn with karate clothes. It can only be worn by those with justice in their hearts.",
+    "like": "Gonta, K1-B0, Kaito, Kokichi, Tenko",
+    "love": "None"
+  },
+  "119":{
+    "name": "Dark Belt",
+    "desc": "A black-ish belt worn with karate clothes. It can only be worn by those with justice in their hearts.",
+    "like": "Gonta, K1-B0, Kaito, Kokichi, Tenko",
+    "love": "None"
+  },
+  "120":{
+    "name": "Dark Belt",
+    "desc": "A black-ish belt worn with karate clothes. It can only be worn by those with justice in their hearts.",
+    "like": "Gonta, K1-B0, Kaito, Kokichi, Tenko",
+    "love": "None"
+  },
+  "121":{
+    "name": "Dark Belt",
+    "desc": "A black-ish belt worn with karate clothes. It can only be worn by those with justice in their hearts.",
+    "like": "Gonta, K1-B0, Kaito, Kokichi, Tenko",
+    "love": "None"
+  },
+  "122":{
+    "name": "Dark Belt",
+    "desc": "A black-ish belt worn with karate clothes. It can only be worn by those with justice in their hearts.",
+    "like": "Gonta, K1-B0, Kaito, Kokichi, Tenko",
+    "love": "None"
+  },
+  "123":{
+    "name": "Dark Belt",
+    "desc": "A black-ish belt worn with karate clothes. It can only be worn by those with justice in their hearts.",
+    "like": "Gonta, K1-B0, Kaito, Kokichi, Tenko",
+    "love": "None"
+  },
+  "124":{
+    "name": "Dark Belt",
+    "desc": "A black-ish belt worn with karate clothes. It can only be worn by those with justice in their hearts.",
+    "like": "Gonta, K1-B0, Kaito, Kokichi, Tenko",
+    "love": "None"
+  },
+  "125":{
+    "name": "Dark Belt",
+    "desc": "A black-ish belt worn with karate clothes. It can only be worn by those with justice in their hearts.",
+    "like": "Gonta, K1-B0, Kaito, Kokichi, Tenko",
+    "love": "None"
+  },
+  "126":{
+    "name": "Dark Belt",
+    "desc": "A black-ish belt worn with karate clothes. It can only be worn by those with justice in their hearts.",
+    "like": "Gonta, K1-B0, Kaito, Kokichi, Tenko",
+    "love": "None"
+  },
+  "127":{
+    "name": "Dark Belt",
+    "desc": "A black-ish belt worn with karate clothes. It can only be worn by those with justice in their hearts.",
+    "like": "Gonta, K1-B0, Kaito, Kokichi, Tenko",
+    "love": "None"
+  },
+  "128":{
+    "name": "Dark Belt",
+    "desc": "A black-ish belt worn with karate clothes. It can only be worn by those with justice in their hearts.",
+    "like": "Gonta, K1-B0, Kaito, Kokichi, Tenko",
+    "love": "None"
+  },
+  "129":{
+    "name": "Dark Belt",
+    "desc": "A black-ish belt worn with karate clothes. It can only be worn by those with justice in their hearts.",
+    "like": "Gonta, K1-B0, Kaito, Kokichi, Tenko",
+    "love": "None"
+  },
+  "130":{
+    "name": "EMP Grenade",
+    "desc": "Miu's EMP Grenade",
+    "like": "-",
+    "love": "-"
+  },
+  "131":{
+    "name": "Wedding Rings",
+    "desc": "Wedding rings, which tied your destiny with Mono- emmmm your lover. Have symbol of Gifted Inmates Academy engraved in it.",
+    "like": "-",
+    "love": "-"
+  },
+  "132":{
+    "name": "Wedding Ring",
+    "desc": "Wedding ring, which tied your destiny with Mono- emmmm your lover. Have symbol of Gifted Inmates Academy engraved in it.",
+    "like": "-",
+    "love": "-"
+  },
+  "150":{
+    "name": "Love Key",
+    "desc": "A key to certain places filled with greed and lust. You can give it away, but something good might happen if you keep it.",
+    "like": "-",
+    "love": "-"
+  },
+  "151":{
+    "name": "Golden Love Key",
+    "desc": "Legends say that this key was the bridge that made Lovers reunite again. This key... it has three prongs... could that mean something?",
+    "like": "-",
+    "love": "Not Angie"
+  },
+  "152":{
+    "name": "Sex Bender Stone",
+    "desc": "This stone can help you change sex for a day. A lot easier then buckets of cold and hot water.",
+    "like": "-",
+    "love": "-"
+  },
+  "153":{
+    "name": "Animalea Stone",
+    "desc": "Summon your inner beast by using this stone in form of animal ears, tail or whatever your inner animal is. Effect is temporary.",
+    "like": "-",
+    "love": "-"
+  },
+  "154":{
+    "name": "Turn 180 Stone",
+    "desc": "Don't like somebody's personality? Now you can change it. This stone will turn their personality 180 degrees around. Though, they probably beat you up when they return to normal.",
+    "like": "-",
+    "love": "-"
+  },
+  "155":{
+    "name": "Body Swap Stone",
+    "desc": "Like in every long-running anime we need to do it at least one. Well, at least now you don't need to find a way to change your bodies back...",
+    "like": "-",
+    "love": "-"
+  },
+  "156":{
+    "name": "Fiction Stone",
+    "desc": "Live as your favorite character for a day. Costume is not included",
+    "like": "-",
+    "love": "-"
+  },
+  "157":{
+    "name": "Age Stone",
+    "desc": "Find your inner child! Or your inner adult! Either way, disneyland is expensive.",
+    "like": "-",
+    "love": "-"
+  },
+  "158":{
+    "name": "Space Love Key",
+    "desc": "A key to certain places filled with greed, lust and zero gravity?",
+    "like": "-",
+    "love": "-"
+  },
+  "159":{
+    "name": "Talent Stone",
+    "desc": "This stone can grant you an Ultimate talent but it takes something in return...",
+    "like": "-",
+    "love": "-"
+  },
+  "160":{
+    "name": "Past Stone",
+    "desc": "Return to your, old, boring, misirable life where you are nothing! Don't even think about going up - you don't have a chance... This stone won't help you remember where you put that keys, not that you will need them.",
+    "like": "-",
+    "love": "-"
+  },
+  "161":{
+    "name": "Myth Stone",
+    "desc": "Myth creature for a day",
+    "like": "-",
+    "love": "-"
+  },
+  "162":{
+    "name": "Succubus Love Key",
+    "desc": "This key works like an bomb. Everyone in range of 5 kilometers will be affected",
+    "like": "-",
+    "love": "-"
+  },
+  "-1":{
+    "name": "Strange Object",
+    "desc": "A str@nge item, usiiiing which can 1ead to different and un_pr_edict.... res___s. Use with c_ut10n!",
+    "like": "?",
+    "love": "!"
+  }
+}

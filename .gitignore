@@ -11,3 +11,8 @@ data/
 # Things
 images/
 music/
+
+# Utility
+simpleLeave.js
+test.js
+transferDB.js

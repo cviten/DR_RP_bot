@@ -1,14 +1,16 @@
-exports.run = (client, guildConf, message, args) => {
+var ParseError = require('../error').ParseError;
+
+exports.run = (client, message, args) => {
   const item = args[1];
   const op = args[0]
   const name = message.member.nickname || message.author.username;
-  const res = client.funcs.shop(guildConf, message.author.id, item, op)
-  if (res.res) {
-    message.channel.send(res.msg);
-  } else {
-    message.reply(res.msg);
-  }
-  client.guildConfigs.set(message.guild.id, guildConf);
+  client.funcs.shop(message.author.id, item, op)
+  .then(res => {
+    message.channel.send(res)
+    })
+  .catch(err => {
+    message.reply(ParseError(err) + "\nUsage of command:\n" + this.help.example);
+    });
 };
 
 exports.config = {

@@ -1,15 +1,15 @@
-exports.run = (client, guildConf, message, args) => {
+const db = require('../db');
+var ParseError = require('../error').ParseError;
+
+exports.run = (client, message, args) => {
   const num = args[0];
   if ((isNaN(num))) {
     message.reply("Wrong number");
     return;
   };
-  for (let person in guildConf.players) {
-    //guildConf.players[person].coins = parseInt(guildConf.players[person].coins) + parseInt(num);
-    client.funcs.giveMoney(guildConf ,person, num);
-  };
-  message.channel.send(`All students were given ${num} coins`);
-  client.guildConfigs.set(message.guild.id, guildConf);
+  //db.db.map(player => player.coins += )
+  message.channel.send(`All students were given ${num} coins (Not really)`);
+  //client.guildConfigs.set(message.guild.id, guildConf);
 };
 
 exports.config = {
